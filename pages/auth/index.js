@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-
 import AuthLayout from "../../components/layout/AuthLayout";
 
 const Login = () => {

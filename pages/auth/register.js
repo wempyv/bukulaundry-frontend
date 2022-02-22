@@ -84,7 +84,7 @@ const register = () => {
             <p className="text-sm">
               Sudah punya akun ?
               <a
-                onClick={() => router.push("/auth/login")}
+                onClick={() => router.push("/auth")}
                 className="
               text-blue-600
               hover:text-blue-900
