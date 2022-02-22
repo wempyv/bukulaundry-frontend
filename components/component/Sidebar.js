@@ -1,12 +1,10 @@
-import { React, useState } from "react";
+import React from "react";
 
-const Sidebar = () => {
-  const [isSidebarShow, setSideBarShow] = useState(false);
-  console.log(isSidebarShow);
+const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
   return (
     <div
-      className={`fixed md:static w-56 md:w-full top-0 left-0 h-screen m-0 flex-col bg-[#F6F8FA] text-white shadow flex  ${
-        isSidebarShow ? "hidden" : ""
+      className={`fixed md:static w-56 md:w-full top-0 h-screen m-0 flex-col bg-[#F6F8FA] text-white shadow flex duration-300 ease-in-out ${
+        isSidebarShow ? "left-0" : "-left-96"
       }`}
     >
       <section className="flex justify-center my-8">
@@ -110,7 +108,7 @@ const Sidebar = () => {
           </svg>
           <span className="mx-2">Logout</span>
         </li>
-        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out mt-12 animate-bounce text-blue-500 md:hidden block">
+        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out mt-12 animate-bounce text-blue-500 md:hidden ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 "
