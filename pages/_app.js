@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useEffect } from "react";
 import "../styles/globals.css";
 import AOS from "aos";
@@ -12,7 +13,14 @@ function MyApp({ Component, pageProps }) {
       delay: 50,
     });
   });
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
