@@ -59,7 +59,6 @@ const Register = () => {
               </label>
               <input
                 type="text"
-                import AuthLayout from "../../components/layout/AuthLayout";
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
