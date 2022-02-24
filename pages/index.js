@@ -86,7 +86,7 @@ const index = () => {
           </p>
         </section>
         <section className="md:flex block md:flex-row flex-col mt-4">
-          <div className="md:w-3/5  flex flex-col">
+          <div className="md:w-3/5  flex flex-col  overflow-x-auto">
             <CardRecentTransaction />
             <CardRecentTransaction />
             <CardRecentTransaction />
