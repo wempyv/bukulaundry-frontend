@@ -1,6 +1,8 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
+  const router = useRouter();
   return (
     <div
       className={`z-10 fixed md:static w-56 md:w-full top-0 h-full md:h-screen m-0 flex-col bg-[#F6F8FA] text-white shadow flex duration-300 ease-in-out ${
@@ -10,8 +12,13 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
       <section className="flex justify-center my-8">
         <img src="/assets/logo.svg" className="h-[38px] object-cover" />
       </section>
-      <section className=" flex flex-col mx-auto text-[#232020] my-16">
-        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4">
+      <section className=" flex flex-col mx-auto my-16">
+        <li
+          onClick={() => router.push("/")}
+          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${
+            router.asPath == "/" ? "text-[#232020]" : " text-gray-300"
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -34,7 +41,14 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
           </svg>
           <span className="mx-2">Dashboard</span>
         </li>
-        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4 text-gray-300">
+        <li
+          onClick={() => router.push("/transactions")}
+          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${
+            router.asPath == "/transactions"
+              ? "text-[#232020]"
+              : "text-gray-300"
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -51,7 +65,12 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
           </svg>
           <span className="mx-2">Transaksi</span>
         </li>
-        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4 text-gray-300">
+        <li
+          onClick={() => router.push("/customers")}
+          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${
+            router.asPath == "/customers" ? "text-[#232020]" : "text-gray-300"
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -68,7 +87,12 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
           </svg>
           <span className="mx-2">Customer</span>
         </li>
-        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4 text-gray-300">
+        <li
+          onClick={() => router.push("/settings")}
+          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${
+            router.asPath == "/settings" ? "text-[#232020]" : "text-gray-300"
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
