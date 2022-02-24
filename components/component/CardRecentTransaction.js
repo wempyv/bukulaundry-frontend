@@ -2,7 +2,7 @@ import React from "react";
 
 const CardRecentTransaction = () => {
   return (
-    <div className="flex items-center text-[#232020] my-3 text-sm">
+    <div className="flex items-center text-[#232020] my-3 text-sm whitespace-nowrap overflow-x-auto">
       <div className="w-2/12">
         <div className="w-12 h-12 bg-[#EBFDF0] rounded-full flex items-center justify-center">
           <svg
@@ -21,10 +21,10 @@ const CardRecentTransaction = () => {
           </svg>
         </div>
       </div>
-      <div className="w-4/12 ">
+      <div className="w-4/12">
         <h1>Selfiani talia sari</h1>
       </div>
-      <div className="w-3/12">
+      <div className="w-3/12 md:mx-0 mx-5">
         <h1>1 Januari 2022</h1>
       </div>
       <div className="w-3/12">
