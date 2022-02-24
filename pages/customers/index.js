@@ -3,7 +3,7 @@ import AdminLayout from "../../components/layout/AdminLayout";
 import TableCustomer from "../../components/component/TableCustomer";
 import Modal from "../../components/component/Modal";
 
-const index = () => {
+const Index = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <AdminLayout>
@@ -28,4 +28,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
