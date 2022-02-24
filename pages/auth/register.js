@@ -1,6 +1,5 @@
-import React from "react";
-import AuthLayout from "../../components/layout/AuthLayout";
 import { useRouter } from "next/router";
+import AuthLayout from "../../components/layout/AuthLayout";
 
 const register = () => {
   const router = useRouter();
