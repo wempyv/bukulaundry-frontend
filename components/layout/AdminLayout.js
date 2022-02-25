@@ -16,7 +16,9 @@ const AdminLayout = ({ children }) => {
           setSideBarShow={setSideBarShow}
         />
       </div>
-      <div className="flex mt-9 ml-0 md:w-4/5 w-full">{children}</div>
+      <div className="flex mt-9 ml-0 md:w-4/5 w-full min-h-screen">
+        {children}
+      </div>
     </div>
   );
 };

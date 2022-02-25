@@ -1,7 +1,5 @@
 import React from "react";
-import CardRecentTransaction from "../components/component/CardRecentTransaction";
 import AdminLayout from "../components/layout/AdminLayout";
-CardRecentTransaction;
 
 const index = () => {
   return (

@@ -3,7 +3,7 @@ import React from "react";
 const ShowSidebar = ({ setSideBarShow, isSidebarShow }) => {
   return (
     <span
-      className={`absolute top-0 right-0 mx-1 my-8 md:hidden ${
+      className={`absolute top-0 right-0 mx-1 my-10 md:hidden ${
         isSidebarShow ? "hidden" : "block"
       }`}
       onClick={() => setSideBarShow(!isSidebarShow)}

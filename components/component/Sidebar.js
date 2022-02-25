@@ -5,7 +5,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
   const router = useRouter();
   return (
     <div
-      className={`z-10 fixed md:static w-56 md:w-full top-0 h-full md:h-screen m-0 flex-col bg-[#F6F8FA] text-white shadow flex duration-300 ease-in-out ${
+      className={`z-10 fixed md:static w-56 md:w-full top-0 h-full md:h-full m-0 flex-col bg-[#F6F8FA] text-white shadow flex duration-300 ease-in-out ${
         isSidebarShow ? "left-0" : "-left-96"
       }`}
     >
