@@ -92,7 +92,7 @@ const index = () => {
             <CardRecentTransaction />
             <CardRecentTransaction />
           </div>
-          <div className="md:w-2/5 flex flex-col bg-[#232020]  md:mr-5 rounded-lg px-4">
+          <div className="md:w-2/5 flex flex-col bg-[#232020]  md:mr-5 rounded-lg px-4 mt-4">
             <h1 className="text-white font-bold my-3">
               Menunggu untuk di proses
             </h1>
