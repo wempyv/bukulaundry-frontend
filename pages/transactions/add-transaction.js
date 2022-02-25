@@ -10,7 +10,7 @@ const AddTransaction = () => {
         <section>
           <h1 className="text-2xl font-medium">Tambah Transaksi Baru</h1>
 
-          <nav className="flex mt-10 mb-8" aria-label="Breadcrumb">
+          <nav className="flex mt-10 mb-4" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
               <li>
                 <div className="flex items-center">
@@ -99,7 +99,7 @@ const AddTransaction = () => {
               </div>
               <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
                 <label htmlFor="Email" className="text-sm">
-                  Total tagihan
+                  Service
                 </label>
                 <div className="flex my-2">
                   <div className="form-check form-check-inline">
