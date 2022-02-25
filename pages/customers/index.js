@@ -12,13 +12,13 @@ const Index = () => {
           <div className="flex md:flex-row flex-col">
             <h1 className="text-2xl font-medium">Data Customer</h1>
             <button
-              className="rounded w-full md:w-[18rem] h-[2.8rem] bg-gray-900 text-white text-sm my-4 md:my-0  hover:scale-105 hover:shadow-xl duration-300 ease-in-out ml-auto font-medium"
+              className="rounded w-full md:w-[18rem] h-[2.8rem] bg-gray-900 text-white text-sm my-6 md:my-0  hover:scale-105 hover:shadow-xl duration-300 ease-in-out ml-auto font-medium"
               onClick={() => setShowModal(true)}
             >
               + Tambah Customer
             </button>
           </div>
-          <div className="flex w-full mt-8">
+          <div className="flex w-full mt-2">
             <input
               type="text"
               className="h-10 border rounded-md w-full pl-2"

@@ -9,7 +9,7 @@ const index = () => {
         <section>
           <div className="flex md:flex-row flex-col">
             <h1 className="text-2xl font-medium">Data Transaksi</h1>
-            <button className="rounded w-full md:w-[18rem] h-[2.8rem] bg-gray-900 text-white text-sm my-4 md:my-0  hover:scale-105 hover:shadow-xl duration-300 ease-in-out ml-auto font-medium">
+            <button className="rounded w-full md:w-[18rem] h-[2.8rem] bg-gray-900 text-white text-sm mt-6 md:my-0  hover:scale-105 hover:shadow-xl duration-300 ease-in-out ml-auto font-medium">
               + Tambah Transaksi
             </button>
           </div>
