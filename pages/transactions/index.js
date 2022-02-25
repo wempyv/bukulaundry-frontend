@@ -13,7 +13,14 @@ const index = () => {
               + Tambah Transaksi
             </button>
           </div>
-          <div className="md:flex block my-4 items-center">
+          <div className="flex w-full mt-8">
+            <input
+              type="text"
+              className="h-10 border rounded-md w-full pl-2"
+              placeholder="Cari data transaksi"
+            />
+          </div>
+          <div className="md:flex block items-center">
             <TableTransaction />
           </div>
         </section>

@@ -18,6 +18,13 @@ const Index = () => {
               + Tambah Customer
             </button>
           </div>
+          <div className="flex w-full mt-8">
+            <input
+              type="text"
+              className="h-10 border rounded-md w-full pl-2"
+              placeholder="Cari data customer"
+            />
+          </div>
           <div className="md:flex w-full my-4 items-center">
             <TableCustomer />
           </div>
