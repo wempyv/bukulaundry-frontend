@@ -22,7 +22,7 @@ const CardRecentTransaction = () => {
         </div>
       </div>
       <div className="w-4/12">
-        <h1>Selfiani talia sari</h1>
+        <h1>Maudy ayundha</h1>
       </div>
       <div className="w-3/12 md:mx-0 mx-6">
         <h1>1 Januari 2022</h1>
