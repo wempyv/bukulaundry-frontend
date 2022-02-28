@@ -96,7 +96,7 @@ const DetailTransaction = () => {
         </section>
         <section>
           <div className="md:flex">
-            <div className="md:w-3/12 flex flex-col">
+            <div className="md:w-4/12 flex flex-col">
               <div className="form-group flex flex-col mt-4 mb-4">
                 <span className="text-sm text-[#B89F9F]">Alamat Customer</span>
                 <span className="text-[#232020] font-medium">
@@ -118,6 +118,22 @@ const DetailTransaction = () => {
                 <span className="text-[#232020] font-medium">
                   Sedang di antar
                 </span>
+              </div>
+            </div>
+            <div className="md:w-5/12 flex flex-col mb-8">
+              <div className="h-96 overflow-y-auto bg-[#232020] rounded-md py-5 mt-6 md:mt-0 md:py-2">
+                <div className="flex w-full justify-between px-4 mt-3">
+                  <h1 className="text-white font-bold text-xl">Detail item</h1>
+                </div>
+                <div className="flex w-full justify-between px-4 mt-4">
+                  <div>
+                    <span>👕</span>
+                    <span className="text-sm text-[#D7CDCD] mx-2">
+                      Baju Kaos
+                    </span>
+                  </div>
+                  <span className="text-sm text-[#B89F9F]">5x</span>
+                </div>
               </div>
             </div>
           </div>
