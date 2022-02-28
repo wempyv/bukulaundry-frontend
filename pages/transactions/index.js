@@ -1,15 +1,20 @@
 import React from "react";
+import { useRouter } from "next/router";
 import TableTransaction from "../../components/component/TableTransaction";
 import AdminLayout from "../../components/layout/AdminLayout";
 
 const index = () => {
+  const router = useRouter();
   return (
     <AdminLayout>
       <div className="flex flex-col w-full md:ml-4 px-2 items-stretch">
         <section>
           <div className="flex md:flex-row flex-col">
             <h1 className="text-2xl font-medium">Data Transaksi</h1>
-            <button className="rounded w-full md:w-[18rem] h-[2.8rem] bg-gray-900 text-white text-sm mt-6 md:my-0  hover:scale-105 hover:shadow-xl duration-300 ease-in-out ml-auto font-medium">
+            <button
+              className="rounded w-full md:w-[18rem] h-[2.8rem] bg-gray-900 text-white text-sm mt-6 md:my-0  hover:scale-105 hover:shadow-xl duration-300 ease-in-out ml-auto font-medium"
+              onClick={() => router.push("/transactions/add-transaction")}
+            >
               + Tambah Transaksi
             </button>
           </div>
