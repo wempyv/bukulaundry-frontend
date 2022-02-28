@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import AdminLayout from "../../components/layout/AdminLayout";
 import ModalAddItem from "../../components/component/ModalAddItem";
 
-const AddTransaction = () => {
+const DetailTransaction = () => {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   return (
@@ -127,4 +127,4 @@ const AddTransaction = () => {
   );
 };
 
-export default AddTransaction;
+export default DetailTransaction;
