@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import TableTransaction from "../../components/component/TableTransaction";
 import AdminLayout from "../../components/layout/AdminLayout";
 
-const index = () => {
+const Index = () => {
   const router = useRouter();
   return (
     <AdminLayout>
@@ -34,4 +34,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
