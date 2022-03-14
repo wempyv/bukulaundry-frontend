@@ -95,7 +95,7 @@ const AddTransaction = () => {
                   <label htmlFor="" className="text-sm">
                     Status Pembayaran
                   </label>
-                  <select class="border my-2 border-gray-300 bg-white rounded p-1">
+                  <select className="border my-2 border-gray-300 bg-white rounded p-1">
                     <option>Pending</option>
                     <option>Bayar ditempat(Pending)</option>
                     <option>Sudah dibayar(Sukses)</option>
@@ -105,7 +105,7 @@ const AddTransaction = () => {
                   <label htmlFor="" className="text-sm">
                     Status Proses Laundry
                   </label>
-                  <select class="border my-2 border-gray-300 bg-white rounded p-1">
+                  <select className="border my-2 border-gray-300 bg-white rounded p-1">
                     <option>Penerimaan Cucian</option>
                     <option>Pembasahan(Pre washings)</option>
                     <option>Pencucian(Washing)</option>
@@ -169,7 +169,7 @@ const AddTransaction = () => {
                   <label htmlFor="" className="text-sm">
                     Status on-demand
                   </label>
-                  <select class="border my-2 border-gray-300 bg-white rounded p-1">
+                  <select className="border my-2 border-gray-300 bg-white rounded p-1">
                     <option>Sedang proses pencucian(Pending)</option>
                     <option>Diantar ke-alamat tujuan(Pending)</option>
                     <option>Pending(Customer tidak ada dirumah)</option>
