@@ -5,6 +5,7 @@ import ModalAddItem from "../../components/component/ModalAddItem";
 
 const AddTransaction = () => {
   const [showModal, setShowModal] = useState(false);
+  const [inputService, setInputService] = useState(false);
   const router = useRouter();
   return (
     <AdminLayout>
@@ -91,8 +92,31 @@ const AddTransaction = () => {
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
+                  <label htmlFor="" className="text-sm">
+                    Status Pembayaran
+                  </label>
+                  <select class="border my-2 border-gray-300 bg-white rounded p-1">
+                    <option>Pending</option>
+                    <option>Bayar ditempat(Pending)</option>
+                    <option>Sudah dibayar(Sukses)</option>
+                  </select>
+                </div>
+                <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
+                  <label htmlFor="" className="text-sm">
+                    Status Proses Laundry
+                  </label>
+                  <select class="border my-2 border-gray-300 bg-white rounded p-1">
+                    <option>Penerimaan Cucian</option>
+                    <option>Pembasahan(Pre washings)</option>
+                    <option>Pencucian(Washing)</option>
+                    <option>Pengeringan(Drying)</option>
+                    <option>Penyetrikaan(Pressing)</option>
+                    <option>Selesai(Finish)</option>
+                  </select>
+                </div>
+                <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
                   <label htmlFor="Total tagihan" className="text-sm">
-                    Total tagihan tambahan
+                    Tagihan tambahan
                   </label>
                   <input
                     type="number"
@@ -112,6 +136,8 @@ const AddTransaction = () => {
                         name="inlineRadioOptions"
                         id="inlineRadio1"
                         value="option1"
+                        checked={inputService ? 'checked' : ''}
+                        onClick={() => setInputService(true)}
                       />
                       <label
                         className="form-check-label inline-block text-gray-800"
@@ -127,6 +153,8 @@ const AddTransaction = () => {
                         name="inlineRadioOptions"
                         id="inlineRadio2"
                         value="option2"
+                        checked={!inputService ? 'checked' : ''}
+                        onClick={() => setInputService(false)}
                       />
                       <label
                         className="form-check-label inline-block text-gray-800"
@@ -136,6 +164,17 @@ const AddTransaction = () => {
                       </label>
                     </div>
                   </div>
+                </div>
+                <div className={inputService ? 'form-group mt-4 flex flex-col  w-full md:pr-4' : 'hidden'}>
+                  <label htmlFor="" className="text-sm">
+                    Status on-demand
+                  </label>
+                  <select class="border my-2 border-gray-300 bg-white rounded p-1">
+                    <option>Sedang proses pencucian(Pending)</option>
+                    <option>Diantar ke-alamat tujuan(Pending)</option>
+                    <option>Pending(Customer tidak ada dirumah)</option>
+                    <option>Selesai(Sudah diterima customer)</option>
+                  </select>
                 </div>
                 <div className="form-group mt-8 flex items-center justify-between w-full md:pr-4">
                   <label htmlFor="Email" className="text-sm">
