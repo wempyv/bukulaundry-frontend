@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import "../styles/globals.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

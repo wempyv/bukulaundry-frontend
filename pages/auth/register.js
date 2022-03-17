@@ -1,8 +1,34 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
+import axios from "axios";
 import AuthLayout from "../../components/layout/AuthLayout";
 
 const Register = () => {
   const router = useRouter();
+  const [msg, setMsg] = useState("");
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
+
+  const Register = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/users", {
+        name: name,
+        email: email,
+        password: password,
+        confPassword: confPassword,
+      });
+      router.push("/");
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
+    }
+  };
+
   return (
     <AuthLayout>
       <section className="flex">
@@ -22,6 +48,7 @@ const Register = () => {
             Daftar untuk kemudahan mengatur keuangan laundry anda
           </p>
           <form
+            onSubmit={Register}
             className="flex flex-col"
             data-aos="fade-right"
             data-aos-duration="800"
@@ -31,6 +58,8 @@ const Register = () => {
                 Email
               </label>
               <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="text"
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
@@ -40,6 +69,19 @@ const Register = () => {
                 Password
               </label>
               <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
+              />
+            </div>
+            <div className="form-group mt-4 flex flex-col">
+              <label htmlFor="Email" className="text-sm">
+                Konfirmasi Password
+              </label>
+              <input
+                value={confPassword}
+                onChange={(e) => setConfPassword(e.target.value)}
                 type="password"
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
@@ -49,11 +91,13 @@ const Register = () => {
                 Nama Laundry
               </label>
               <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 type="text"
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
-            <div className="form-group mt-4 flex flex-col">
+            {/* <div className="form-group mt-4 flex flex-col">
               <label htmlFor="Email" className="text-sm">
                 Alamat Laundry
               </label>
@@ -61,7 +105,8 @@ const Register = () => {
                 type="text"
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
-            </div>
+            </div> */}
+            <p className="text-sm mt-2 text-red-800 md:w-[18rem]">{msg}</p>
             <button
               type="submit"
               className="
@@ -80,6 +125,7 @@ const Register = () => {
             >
               Daftar
             </button>
+
             <p className="text-sm">
               Sudah punya akun ?
               <a
