@@ -1,13 +1,22 @@
 import React from "react";
+import axios from 'axios';
 import { useRouter } from "next/router";
 
 const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
   const router = useRouter();
+
+  const Logout = async () => {
+    try {
+      await axios.delete('http://localhost:5000/logout');
+      router.push('/auth');
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div
-      className={`z-10 fixed md:static w-56 md:w-full top-0 h-full md:h-full m-0 flex-col bg-[#F6F8FA] text-white shadow flex duration-300 ease-in-out ${
-        isSidebarShow ? "left-0" : "-left-96"
-      }`}
+      className={`z-10 fixed md:static w-56 md:w-full top-0 h-full md:h-full m-0 flex-col bg-[#F6F8FA] text-white shadow flex duration-300 ease-in-out ${isSidebarShow ? "left-0" : "-left-96"
+        }`}
     >
       <section className="flex justify-center my-8">
         <img src="/assets/logo.svg" className="h-[38px] object-cover" />
@@ -15,9 +24,8 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
       <section className=" flex flex-col mx-auto my-16">
         <li
           onClick={() => router.push("/")}
-          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${
-            router.asPath == "/" ? "text-[#232020]" : " text-gray-300"
-          }`}
+          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${router.asPath == "/" ? "text-[#232020]" : " text-gray-300"
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,11 +51,10 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
         </li>
         <li
           onClick={() => router.push("/transactions")}
-          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${
-            router.asPath == "/transactions"
-              ? "text-[#232020]"
-              : "text-gray-300"
-          }`}
+          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${router.asPath == "/transactions"
+            ? "text-[#232020]"
+            : "text-gray-300"
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,9 +74,8 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
         </li>
         <li
           onClick={() => router.push("/customers")}
-          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${
-            router.asPath == "/customers" ? "text-[#232020]" : "text-gray-300"
-          }`}
+          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${router.asPath == "/customers" ? "text-[#232020]" : "text-gray-300"
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -89,9 +95,8 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
         </li>
         <li
           onClick={() => router.push("/settings")}
-          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${
-            router.asPath == "/settings" ? "text-[#232020]" : "text-gray-300"
-          }`}
+          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${router.asPath == "/settings" ? "text-[#232020]" : "text-gray-300"
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +120,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
           </svg>
           <span className="mx-2">Pengaturan</span>
         </li>
-        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4 text-gray-300">
+        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4 text-gray-300" onClick={Logout}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
