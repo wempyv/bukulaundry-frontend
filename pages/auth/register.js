@@ -21,7 +21,7 @@ const Register = () => {
         password: password,
         confPassword: confPassword,
       });
-      router.push("/");
+      router.push("/auth");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
