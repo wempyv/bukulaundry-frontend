@@ -1,8 +1,7 @@
 import React from "react";
 import AdminLayout from "../components/layout/AdminLayout";
 
-const index = (props) => {
-  console.log(props.name)
+const index = () => {
   return (
     <AdminLayout>
       <div className="flex flex-col w-full md:ml-4 px-2 items-stretch">
@@ -116,5 +115,6 @@ const index = (props) => {
     </AdminLayout >
   );
 };
+
 
 export default index;

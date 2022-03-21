@@ -70,16 +70,10 @@ const AdminLayout = ({ children }) => {
         />
       </div>
       <div className="flex mt-9 ml-0 md:w-4/5 w-full min-h-screen">
-        <Child name={name}>
-          {children}
-        </Child>
+        {children}
       </div>
     </div>
   );
 };
-
-const Child = ({ children, name }) => {
-  return <>{children}</>
-}
 
 export default AdminLayout;
