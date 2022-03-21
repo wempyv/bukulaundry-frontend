@@ -136,8 +136,8 @@ const AddTransaction = () => {
                         name="inlineRadioOptions"
                         id="inlineRadio1"
                         value="option1"
-                        checked={inputService ? 'checked' : ''}
-                        onClick={() => setInputService(true)}
+                        checked={inputService === true}
+                        onChange={() => setInputService(true)}
                       />
                       <label
                         className="form-check-label inline-block text-gray-800"
@@ -153,8 +153,8 @@ const AddTransaction = () => {
                         name="inlineRadioOptions"
                         id="inlineRadio2"
                         value="option2"
-                        checked={!inputService ? 'checked' : ''}
-                        onClick={() => setInputService(false)}
+                        checked={inputService === false}
+                        onChange={() => setInputService(false)}
                       />
                       <label
                         className="form-check-label inline-block text-gray-800"
@@ -170,7 +170,7 @@ const AddTransaction = () => {
                     Status on-demand
                   </label>
                   <select className="border my-2 border-gray-300 bg-white rounded p-1">
-                    <option>Sedang proses pencucian(Pending)</option>
+                    <option>Sedang di proses(Pending)</option>
                     <option>Diantar ke-alamat tujuan(Pending)</option>
                     <option>Pending(Customer tidak ada dirumah)</option>
                     <option>Selesai(Sudah diterima customer)</option>
@@ -211,7 +211,7 @@ const AddTransaction = () => {
                 </div>
                 <button
                   type="submit"
-                  className="rounded w-full h-[2.8rem] bg-[#232020] text-white text-sm mt-2 hover:scale-105 hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex items-center justify-center"
+                  className="rounded w-full h-[2.8rem] bg-[#232020] text-white text-sm mt-2 hover:scale-105 hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex ipencuciantems-center justify-center"
                 >
                   Tambah Transaksi
                 </button>
