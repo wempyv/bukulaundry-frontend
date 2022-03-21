@@ -1,18 +1,24 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import { useRouter } from "next/router";
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
-const UserContext = () => {
+const userContext = createContext();
+
+const UserProvider = ({ children }) => {
 
     const router = useRouter();
 
-    const [isSidebarShow, setSideBarShow] = useState(false);
-
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
+
+    const userProfile = {
+        name,
+        email
+    }
 
     useEffect(() => {
         refreshToken();
@@ -55,8 +61,10 @@ const UserContext = () => {
     })
 
     return (
-        <div>UserContext</div>
+        <userContext.Provider value={userProfile}>
+            {children}
+        </userContext.Provider>
     )
 }
 
-export default UserContext
+export { UserProvider, userContext }

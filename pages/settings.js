@@ -1,7 +1,11 @@
-import React from "react";
-import { AdminLayout } from "../components/layout/AdminLayout";
+import React, { useContext } from "react";
+import AdminLayout from "../components/layout/AdminLayout";
+import { userContext } from "../context/UserContext";
 
 const index = () => {
+  const userProfile = useContext(userContext);
+  console.log(userProfile)
+
   return (
     <AdminLayout>
       <div className="flex flex-col w-full md:ml-4 px-2 items-stretch">
