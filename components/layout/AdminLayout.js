@@ -2,14 +2,18 @@ import { React, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+
 import Sidebar from "../component/Sidebar";
 import ShowSidebar from "../component/ShowSidebar";
 
+
 const AdminLayout = ({ children }) => {
   const router = useRouter();
+
   const [isSidebarShow, setSideBarShow] = useState(false);
 
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [expire, setExpire] = useState('');
 
@@ -23,6 +27,7 @@ const AdminLayout = ({ children }) => {
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
       setName(decoded.name);
+      setEmail(decoded.email);
       setExpire(decoded.exp);
 
     } catch (error) {
@@ -43,6 +48,8 @@ const AdminLayout = ({ children }) => {
 
       const decoded = jwt_decode(response.data.accessToken);
       setName(decoded.name);
+      setEmail(decoded.email);
+
       setExpire(decoded.exp);
     }
     return config;
@@ -63,10 +70,16 @@ const AdminLayout = ({ children }) => {
         />
       </div>
       <div className="flex mt-9 ml-0 md:w-4/5 w-full min-h-screen">
-        {children}
+        <Child name={name}>
+          {children}
+        </Child>
       </div>
     </div>
   );
 };
+
+const Child = ({ children, name }) => {
+  return <>{children}</>
+}
 
 export default AdminLayout;
