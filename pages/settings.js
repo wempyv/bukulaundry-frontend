@@ -61,7 +61,27 @@ const index = () => {
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
                   <label htmlFor="Email" className="text-sm">
-                    Tarif jasa per/kg
+                    Tarif jasa cuci & gosok per/kg
+                  </label>
+                  <input
+                    type="number"
+                    className="border my-2 border-gray-300 rounded p-1"
+                  />
+                </div>
+              </div>
+              <div className="md:flex w-full">
+                <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
+                  <label htmlFor="Email" className="text-sm">
+                    Tarif jasa cuci per/kg
+                  </label>
+                  <input
+                    type="number"
+                    className="border my-2 border-gray-300 rounded p-1"
+                  />
+                </div>
+                <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
+                  <label htmlFor="Email" className="text-sm">
+                    Tarif jasa gosok per/kg
                   </label>
                   <input
                     type="number"

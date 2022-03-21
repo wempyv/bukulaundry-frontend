@@ -6,6 +6,7 @@ import ModalAddItem from "../../components/component/ModalAddItem";
 const AddTransaction = () => {
   const [showModal, setShowModal] = useState(false);
   const [inputService, setInputService] = useState(false);
+  const [laundryType, setLaundryType] = useState(1);
   const router = useRouter();
   return (
     <AdminLayout>
@@ -102,6 +103,58 @@ const AddTransaction = () => {
                   </select>
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
+                  <label htmlFor="Email" className="text-sm">
+                    Type Laundry
+                  </label>
+                  <div className="flex my-2">
+                    <div className="form-check form-check-inline">
+                      <input
+                        className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#CA9E00] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                        type="radio"
+                        value="5000"
+                        checked={laundryType === 1}
+                        onChange={() => setLaundryType(1)}
+                      />
+                      <label
+                        className="form-check-label inline-block text-gray-800"
+                        htmlFor="inlineRadio10"
+                      >
+                        Cuci + Gosok
+                      </label>
+                    </div>
+                    <div className="form-check form-check-inline ml-5">
+                      <input
+                        className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#685b2b] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                        type="radio"
+                        value="5000"
+                        checked={laundryType === 2}
+                        onChange={() => setLaundryType(2)}
+                      />
+                      <label
+                        className="form-check-label inline-block text-gray-800"
+                        htmlFor="inlineRadio10"
+                      >
+                        Cuci
+                      </label>
+                    </div>
+                    <div className="form-check form-check-inline mx-5">
+                      <input
+                        className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#232020] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                        type="radio"
+                        value="5000"
+                        checked={laundryType === 3}
+                        onChange={() => setLaundryType(3)}
+                      />
+                      <label
+                        className="form-check-label inline-block text-gray-800"
+                        htmlFor="inlineRadio20"
+                      >
+                        Gosok
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className={`form-group mt-4  flex-col  w-full md:pr-4 ${laundryType === 1 ? 'flex' : 'hidden'}`}>
                   <label htmlFor="" className="text-sm">
                     Status Proses Laundry
                   </label>
@@ -112,6 +165,15 @@ const AddTransaction = () => {
                     <option>Pengeringan(Drying)</option>
                     <option>Penyetrikaan(Pressing)</option>
                     <option>Selesai(Finish)</option>
+                  </select>
+                </div>
+                <div className={`form-group mt-4  flex-col  w-full md:pr-4 ${laundryType === 2 || laundryType === 3 ? 'flex' : 'hidden'}`}>
+                  <label htmlFor="" className="text-sm">
+                    Status Proses Laundry
+                  </label>
+                  <select className="border my-2 border-gray-300 bg-white rounded p-1">
+                    <option>Penerimaan Cucian(Belum Selesai)</option>
+                    <option>Sudah Selesai</option>
                   </select>
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
@@ -176,7 +238,7 @@ const AddTransaction = () => {
                     <option>Selesai(Sudah diterima customer)</option>
                   </select>
                 </div>
-                <div className="form-group mt-8 flex items-center justify-between w-full md:pr-4">
+                <div className="form-group mt-8 flex itTagihan tambahanems-center justify-between w-full md:pr-4">
                   <label htmlFor="Email" className="text-sm">
                     Total
                   </label>
