@@ -3,8 +3,7 @@ import AdminLayout from "../components/layout/AdminLayout";
 import { userContext } from "../context/UserContext";
 
 const index = () => {
-  const userProfile = useContext(userContext);
-  console.log(userProfile)
+  const user = useContext(userContext);
 
   return (
     <AdminLayout>
@@ -20,7 +19,7 @@ const index = () => {
                   </label>
                   <input
                     type="text"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" value={user.name}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
@@ -29,7 +28,7 @@ const index = () => {
                   </label>
                   <input
                     type="text"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" value={user.email}
                   />
                 </div>
               </div>
