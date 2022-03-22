@@ -11,6 +11,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
+  const [address, setAddress] = useState('');
+  const [whatsapp_number, setWhatsAppNumber] = useState('');
 
   const Register = async (e) => {
     e.preventDefault();
@@ -20,6 +22,8 @@ const Register = () => {
         email: email,
         password: password,
         confPassword: confPassword,
+        address: address,
+        whatsapp_number: whatsapp_number
       });
       router.push("/auth");
     } catch (error) {
@@ -60,12 +64,12 @@ const Register = () => {
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                type="text"
+                type="email"
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
             <div className="form-group mt-4 flex flex-col">
-              <label htmlFor="Email" className="text-sm">
+              <label htmlFor="Password" className="text-sm">
                 Password
               </label>
               <input
@@ -76,7 +80,7 @@ const Register = () => {
               />
             </div>
             <div className="form-group mt-4 flex flex-col">
-              <label htmlFor="Email" className="text-sm">
+              <label htmlFor="Konfirmasi Password" className="text-sm">
                 Konfirmasi Password
               </label>
               <input
@@ -87,7 +91,7 @@ const Register = () => {
               />
             </div>
             <div className="form-group mt-4 flex flex-col">
-              <label htmlFor="Email" className="text-sm">
+              <label htmlFor="Nama Laundry" className="text-sm">
                 Nama Laundry
               </label>
               <input
@@ -97,15 +101,28 @@ const Register = () => {
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
-            {/* <div className="form-group mt-4 flex flex-col">
-              <label htmlFor="Email" className="text-sm">
+            <div className="form-group mt-4 flex flex-col">
+              <label htmlFor="Alamat Laundry" className="text-sm">
                 Alamat Laundry
               </label>
               <input
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
                 type="text"
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
-            </div> */}
+            </div>
+            <div className="form-group mt-4 flex flex-col">
+              <label htmlFor="Nomor Whatsapp" className="text-sm">
+                Nomor Whatsapp
+              </label>
+              <input
+                value={whatsapp_number}
+                onChange={(e) => setWhatsAppNumber(e.target.value)}
+                type="number"
+                className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
+              />
+            </div>
             <p className="text-sm mt-2 text-red-800 md:w-[18rem]">{msg}</p>
             <button
               type="submit"

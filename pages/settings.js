@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AdminLayout from "../components/layout/AdminLayout";
 import { userContext } from "../context/UserContext";
 
 const index = () => {
   const user = useContext(userContext);
+
+  useEffect(() => {
+    user.refreshToken()
+  }, [])
 
   return (
     <AdminLayout>
@@ -48,7 +52,7 @@ const index = () => {
                   </label>
                   <input
                     type="text"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" value={user.address}
                   />
                 </div>
               </div>
@@ -59,7 +63,7 @@ const index = () => {
                   </label>
                   <input
                     type="number"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" value={user.whatsapp_number}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">

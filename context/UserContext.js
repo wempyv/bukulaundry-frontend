@@ -11,14 +11,13 @@ const UserProvider = ({ children }) => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [address, setAddress] = useState('');
+    const [whatsapp_number, setWhatsAppNumber] = useState('');
 
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
 
-    const userProfile = {
-        name,
-        email
-    }
+
 
     useEffect(() => {
         refreshToken();
@@ -29,10 +28,13 @@ const UserProvider = ({ children }) => {
             const response = await axios.get('http://localhost:5000/token');
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
+
             setName(decoded.name);
             setEmail(decoded.email);
-            setExpire(decoded.exp);
+            setAddress(decoded.address);
+            setWhatsAppNumber(decoded.whatsapp_number);
 
+            setExpire(decoded.exp);
         } catch (error) {
             if (error.response) {
                 router.push('/auth')
@@ -50,8 +52,12 @@ const UserProvider = ({ children }) => {
             setToken(response.data.accessToken);
 
             const decoded = jwt_decode(response.data.accessToken);
+
             setName(decoded.name);
             setEmail(decoded.email);
+            setAddress(decoded.address);
+            setWhatsAppNumber(decoded.whatsapp_number);
+
 
             setExpire(decoded.exp);
         }
@@ -60,6 +66,14 @@ const UserProvider = ({ children }) => {
         return Promise.reject(error);
     })
 
+
+    const userProfile = {
+        name,
+        email,
+        address,
+        whatsapp_number,
+        refreshToken
+    }
     return (
         <userContext.Provider value={userProfile}>
             {children}
