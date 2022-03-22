@@ -14,6 +14,10 @@ const UserProvider = ({ children }) => {
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
     const [whatsapp_number, setWhatsAppNumber] = useState('');
+    const [priceWashRubbing, setPriceWashRubbing] = useState('');
+    const [priceRubbing, setPriceRubbing] = useState('');
+    const [priceWash, setPriceWash] = useState('');
+    const [serviceFee, setServiceFee] = useState('');
 
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
@@ -33,6 +37,10 @@ const UserProvider = ({ children }) => {
             setEmail(decoded.email);
             setAddress(decoded.address);
             setWhatsAppNumber(decoded.whatsapp_number);
+            setPriceWashRubbing(decoded.price_wash_rubbing);
+            setPriceRubbing(decoded.price_rubbing);
+            setPriceWash(decoded.price_wash);
+            setServiceFee(decoded.service_fee);
 
             setExpire(decoded.exp);
         } catch (error) {
@@ -53,12 +61,16 @@ const UserProvider = ({ children }) => {
 
             const decoded = jwt_decode(response.data.accessToken);
 
+
             setUserId(decoded.userId);
             setName(decoded.name);
             setEmail(decoded.email);
             setAddress(decoded.address);
             setWhatsAppNumber(decoded.whatsapp_number);
-
+            setPriceWashRubbing(decoded.price_wash_rubbing);
+            setPriceRubbing(decoded.price_rubbing);
+            setPriceWash(decoded.price_wash);
+            setServiceFee(decoded.service_fee);
 
             setExpire(decoded.exp);
         }
@@ -74,6 +86,10 @@ const UserProvider = ({ children }) => {
         address,
         whatsapp_number,
         userId,
+        priceWashRubbing,
+        priceRubbing,
+        priceWash,
+        serviceFee,
         refreshToken
     }
     return (
