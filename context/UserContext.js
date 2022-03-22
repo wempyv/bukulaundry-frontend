@@ -9,6 +9,7 @@ const UserProvider = ({ children }) => {
 
     const router = useRouter();
 
+    const [userId, setUserId] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
@@ -16,8 +17,6 @@ const UserProvider = ({ children }) => {
 
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
-
-
 
     useEffect(() => {
         refreshToken();
@@ -29,6 +28,7 @@ const UserProvider = ({ children }) => {
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
 
+            setUserId(decoded.userId);
             setName(decoded.name);
             setEmail(decoded.email);
             setAddress(decoded.address);
@@ -53,6 +53,7 @@ const UserProvider = ({ children }) => {
 
             const decoded = jwt_decode(response.data.accessToken);
 
+            setUserId(decoded.userId);
             setName(decoded.name);
             setEmail(decoded.email);
             setAddress(decoded.address);
@@ -72,6 +73,7 @@ const UserProvider = ({ children }) => {
         email,
         address,
         whatsapp_number,
+        userId,
         refreshToken
     }
     return (

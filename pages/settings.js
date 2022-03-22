@@ -1,13 +1,45 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import AdminLayout from "../components/layout/AdminLayout";
+import axios from "axios";
 import { userContext } from "../context/UserContext";
 
 const index = () => {
+  const router = useRouter();
   const user = useContext(userContext);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [address, setAddress] = useState('');
+  const [whatsapp_number, setWhatsAppNumber] = useState('');
+  const [priceWashRubbing, setPriceWashRubbing] = useState('');
+  const [priceRubbing, setPriceRubbing] = useState('');
+  const [priceWash, setPriceWash] = useState('');
+  const [serviceFee, setServiceFee] = useState('');
+  const id = user.userId
 
   useEffect(() => {
     user.refreshToken()
   }, [])
+
+  const userUpdate = async () => {
+    await axios.patch(`http://localhost:5000/users/${id}`, {
+      email: email,
+      name: name,
+      password: password,
+      address: address,
+      whatsapp_number: whatsapp_number,
+      price_wash_rubbing: priceWashRubbing,
+      price_rubbing: priceRubbing,
+      price_wash: priceWash,
+      service_fee: serviceFee
+    });
+
+    router.push("/settings");
+    user.refreshToken()
+  }
+
 
   return (
     <AdminLayout>
@@ -15,7 +47,7 @@ const index = () => {
         <section>
           <h1 className="text-2xl font-medium">Pengaturan akun</h1>
           <div className="md:flex block my-4 items-center">
-            <form className="w-full" data-aos="fade-up" data-aos-duration="800">
+            <form className="w-full" data-aos="fade-up" data-aos-duration="800" onSubmit={userUpdate}>
               <div className="md:flex w-full">
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
                   <label htmlFor="Email" className="text-sm">
@@ -23,7 +55,7 @@ const index = () => {
                   </label>
                   <input
                     type="text"
-                    className="border my-2 border-gray-300 rounded p-1" value={user.name}
+                    className="border my-2 border-gray-300 rounded p-1" onChange={(e) => setName(e.target.value)} value={user.name}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
@@ -32,7 +64,7 @@ const index = () => {
                   </label>
                   <input
                     type="text"
-                    className="border my-2 border-gray-300 rounded p-1" value={user.email}
+                    className="border my-2 border-gray-300 rounded p-1" onChange={(e) => setEmail(e.target.value)} value={user.email}
                   />
                 </div>
               </div>
@@ -43,7 +75,7 @@ const index = () => {
                   </label>
                   <input
                     type="password"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
@@ -52,7 +84,7 @@ const index = () => {
                   </label>
                   <input
                     type="text"
-                    className="border my-2 border-gray-300 rounded p-1" value={user.address}
+                    className="border my-2 border-gray-300 rounded p-1" onChange={(e) => setAddress(e.target.value)} value={user.address}
                   />
                 </div>
               </div>
@@ -63,7 +95,7 @@ const index = () => {
                   </label>
                   <input
                     type="number"
-                    className="border my-2 border-gray-300 rounded p-1" value={user.whatsapp_number}
+                    className="border my-2 border-gray-300 rounded p-1" onChange={(e) => setWhatsAppNumber(e.target.value)} value={user.whatsapp_number}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
@@ -72,7 +104,7 @@ const index = () => {
                   </label>
                   <input
                     type="number"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" onChange={(e) => setPriceWashRubbing(e.target.value)}
                   />
                 </div>
               </div>
@@ -83,7 +115,7 @@ const index = () => {
                   </label>
                   <input
                     type="number"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" onChange={(e) => setPriceWash(e.target.value)}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
@@ -92,7 +124,7 @@ const index = () => {
                   </label>
                   <input
                     type="number"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" onChange={(e) => setPriceRubbing(e.target.value)}
                   />
                 </div>
               </div>
@@ -103,7 +135,7 @@ const index = () => {
                   </label>
                   <input
                     type="number"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" onChange={(e) => setServiceFee(e.target.value)}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">

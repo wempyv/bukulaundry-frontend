@@ -33,6 +33,7 @@ const Register = () => {
     }
   };
 
+
   return (
     <AuthLayout>
       <section className="flex">
