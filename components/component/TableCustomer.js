@@ -1,12 +1,15 @@
 import { React, useState, useEffect, useContext } from "react";
 import { userContext } from "../../context/UserContext";
 import axios from 'axios';
+import moment from 'moment';
+import 'moment/locale/id'
+moment.locale('id');
 
 const TableCustomer = () => {
   const user = useContext(userContext);
+  const delay = ms => new Promise(res => setTimeout(res, ms));
   const [customers, setCustomer] = useState([]);
 
-  const id = 2;
 
   useEffect(() => {
     user.refreshToken()
@@ -14,7 +17,8 @@ const TableCustomer = () => {
   }, []);
 
   const getCustomer = async () => {
-    const response = await axios.get(`http://localhost:5000/customers/${id}`);
+    await delay(1500)
+    const response = await axios.get(`http://localhost:5000/customers/${user.userId}`);
     setCustomer(response.data);
   }
 
@@ -58,20 +62,19 @@ const TableCustomer = () => {
               </thead>
               <tbody>
                 {customers.map((customer, index) => (
-                  <tr className=" odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                  <tr className=" odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600" key={customer.id}>
                     <td className="py-4  px-3 md:px-0 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      Wempy Virgana
+                      {customer.name_customer}
                     </td>
                     <td className="py-4  px-3 md:px-0 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      087726782313
+                      {customer.whatsapp_number}
                     </td>
                     <td className="py-4  px-3 md:px-0 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      15 Maret 2022
+                      {moment(customer.createdAt).format('LL')}
                     </td>
                     <td className="py-4 px-3 md:px-0 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                       <p className="w-64 truncate whitespace-nowrap ">
-                        Jalan Gatot Subroto nomor 02 tanjungpandan belitung Jalan
-                        Gatot Subroto nomor 02 tanjungpandan belitung
+                        {customer.address}
                       </p>
                     </td>
                     <td className="py-4  px-3 md:px-0 text-sm font-medium text-right  ">
