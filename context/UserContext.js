@@ -81,11 +81,11 @@ const UserProvider = ({ children }) => {
 
 
     const userProfile = {
+        userId,
         name,
         email,
         address,
         whatsapp_number,
-        userId,
         priceWashRubbing,
         priceRubbing,
         priceWash,
