@@ -74,7 +74,7 @@ const ModalCustomer = ({ showModal, setShowModal, customerDetail, setCustomerDet
                   htmlFor="address"
                   className="block mb-2 text-sm  text-gray-800 dark:text-gray-300"
                 >
-                  Alamat customer
+                  Alamat Customer
                 </label>
                 <p className="font-medium text-gray-900">{customerDetail.address}</p>
               </div>

@@ -1,14 +1,16 @@
 import { React, useState, useEffect, useContext } from "react";
 import { userContext } from "../../context/UserContext";
 import ModalCustomer from "./ModalDetailCustomer";
+import ModalEdit from './ModalEdit';
 import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/id'
 moment.locale('id');
 
-const TableCustomer = () => {
+const TableCustomer = ({ input }) => {
   const user = useContext(userContext);
   const [showModal, setShowModal] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false)
   const [customers, setCustomer] = useState([]);
   const [customerDetail, setCustomerDetail] = useState([]);
 
@@ -16,6 +18,12 @@ const TableCustomer = () => {
     user.refreshToken()
     getCustomer();
   }, []);
+
+  if (input.length > 0) {
+    customers = customers.filter((i) => {
+      return i.name_customer.toLowerCase().match(input)
+    })
+  }
 
   const getCustomer = async () => {
     const response = await axios.get(`http://localhost:5000/customers/${user.id}`);
@@ -31,6 +39,12 @@ const TableCustomer = () => {
   const deleteCustomer = async (id) => {
     await axios.delete(`http://localhost:5000/customer/${id}`);
     getCustomer();
+  }
+
+  const getCustomerById = async (id) => {
+    const response = await axios.get(`http://localhost:5000/customer/${id}`);
+    setCustomerDetail(response.data);
+    setShowModalEdit(true);
   }
 
   return (
@@ -90,7 +104,7 @@ const TableCustomer = () => {
                     <td className="py-4  px-3 md:px-0 text-sm font-medium text-right  ">
                       <div className="flex ">
                         <div className="w-4/12">
-                          <a href="">
+                          <a className="cursor-pointer" onClick={() => getCustomerById(customer.id)}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="h-5 w-5 text-gray-400 hover:text-gray-700 duration-300 ease-in-out"
@@ -159,6 +173,7 @@ const TableCustomer = () => {
         </div>
       </div>
       <ModalCustomer showModal={showModal} setShowModal={setShowModal} customerDetail={customerDetail} setCustomerDetail={setCustomerDetail} />
+      <ModalEdit showModalEdit={showModalEdit} setShowModalEdit={setShowModalEdit} customerDetail={customerDetail} getCustomer={getCustomer} />
     </div>
   );
 };

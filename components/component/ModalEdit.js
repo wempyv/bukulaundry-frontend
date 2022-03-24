@@ -1,28 +1,36 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { userContext } from "../../context/UserContext";
 import axios from 'axios';
 
-const Modal = ({ showModal, setShowModal }) => {
+const ModalEdit = ({ showModalEdit, setShowModalEdit, customerDetail, getCustomer }) => {
   const user = useContext(userContext);
-
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [whatsappNumber, setWhatsAppNumber] = useState('')
 
+
+  useEffect(() => {
+    if (!showModalEdit) {
+      setName(customerDetail.name_customer);
+      setAddress(customerDetail.address);
+      setWhatsAppNumber(customerDetail.whatsapp_number);
+    }
+  })
+
   const addCustomer = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:5000/customer', {
+    await axios.patch(`http://localhost:5000/customer/${customerDetail.id}`, {
       user_id: user.id,
       name_customer: name,
       address: address,
       whatsapp_number: whatsappNumber
     })
-    setShowModal(false);
-    window.location.reload(false);
+    setShowModalEdit(false);
+    getCustomer();
   }
 
   return (
-    showModal && (
+    showModalEdit && (
       <div
         aria-hidden="true"
         className=" flex overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal h-full md:inset-0 drop-shadow-2xl"
@@ -33,7 +41,7 @@ const Modal = ({ showModal, setShowModal }) => {
               <button
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                onClick={() => setShowModal(false)}
+                onClick={() => setShowModalEdit(false)}
               >
                 <svg
                   className="w-5 h-5"
@@ -54,7 +62,7 @@ const Modal = ({ showModal, setShowModal }) => {
               onSubmit={addCustomer}
             >
               <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                Tambah data customer
+                Edit data customer
               </h3>
               <div>
                 <label
@@ -104,7 +112,7 @@ const Modal = ({ showModal, setShowModal }) => {
                 type="submit"
                 className="w-full text-white bg-[#232020] hover:scale-105 duration-300 ease-out focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                Tambah Customer
+                Edit Customer
               </button>
             </form>
           </div>
@@ -114,4 +122,4 @@ const Modal = ({ showModal, setShowModal }) => {
   );
 };
 
-export default Modal;
+export default ModalEdit;

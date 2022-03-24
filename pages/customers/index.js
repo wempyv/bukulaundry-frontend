@@ -5,6 +5,13 @@ import Modal from "../../components/component/Modal";
 
 const Index = () => {
   const [showModal, setShowModal] = useState(false);
+  const [input, setInput] = useState('');
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInput(e.target.value);
+  }
+
   return (
     <AdminLayout>
       <div className="flex flex-col w-full md:ml-4 px-2 items-stretch">
@@ -22,11 +29,11 @@ const Index = () => {
             <input
               type="text"
               className="h-10 border rounded-md w-full pl-2"
-              placeholder="Cari data customer"
+              placeholder="Cari data customer" value={input} onChange={handleChange}
             />
           </div>
           <div className="md:flex w-full my-4 items-center">
-            <TableCustomer />
+            <TableCustomer input={input} />
           </div>
         </section>
         <Modal showModal={showModal} setShowModal={setShowModal} />
