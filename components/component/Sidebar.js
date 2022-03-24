@@ -8,6 +8,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
   const Logout = async () => {
     try {
       await axios.delete('http://localhost:5000/logout');
+      localStorage.removeItem('userId');
       router.push('/auth');
     } catch (error) {
       console.log(error);

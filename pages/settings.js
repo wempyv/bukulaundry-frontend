@@ -18,8 +18,6 @@ const index = () => {
   const [priceWash, setPriceWash] = useState('');
   const [serviceFee, setServiceFee] = useState('');
 
-  const id = user.userId
-
   useEffect(() => {
     user.refreshToken(),
       setName(user.name),
@@ -34,7 +32,7 @@ const index = () => {
 
 
   const userUpdate = async () => {
-    await axios.patch(`http://localhost:5000/users/${id}`, {
+    await axios.patch(`http://localhost:5000/users/${user.id}`, {
       email: email,
       name: name,
       password: password,

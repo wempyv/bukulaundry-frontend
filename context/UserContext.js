@@ -18,9 +18,11 @@ const UserProvider = ({ children }) => {
     const [priceRubbing, setPriceRubbing] = useState('');
     const [priceWash, setPriceWash] = useState('');
     const [serviceFee, setServiceFee] = useState('');
-
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
+    const id = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
+
+
 
     useEffect(() => {
         refreshToken();
@@ -33,6 +35,7 @@ const UserProvider = ({ children }) => {
             const decoded = jwt_decode(response.data.accessToken);
 
             setUserId(decoded.userId);
+            localStorage.setItem('userId', decoded.userId);
             setName(decoded.name);
             setEmail(decoded.email);
             setAddress(decoded.address);
@@ -51,7 +54,6 @@ const UserProvider = ({ children }) => {
     }
 
     const axiosJWT = axios.create();
-
     axiosJWT.interceptors.request.use(async (config) => {
         const currentDate = new Date();
         if (expire * 1000 < currentDate.getTime()) {
@@ -60,17 +62,6 @@ const UserProvider = ({ children }) => {
             setToken(response.data.accessToken);
 
             const decoded = jwt_decode(response.data.accessToken);
-
-
-            setUserId(decoded.userId);
-            setName(decoded.name);
-            setEmail(decoded.email);
-            setAddress(decoded.address);
-            setWhatsAppNumber(decoded.whatsapp_number);
-            setPriceWashRubbing(decoded.price_wash_rubbing);
-            setPriceRubbing(decoded.price_rubbing);
-            setPriceWash(decoded.price_wash);
-            setServiceFee(decoded.service_fee);
 
             setExpire(decoded.exp);
         }
@@ -81,7 +72,7 @@ const UserProvider = ({ children }) => {
 
 
     const userProfile = {
-        userId,
+        id,
         name,
         email,
         address,

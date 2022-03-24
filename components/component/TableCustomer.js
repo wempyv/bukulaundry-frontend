@@ -7,9 +7,7 @@ moment.locale('id');
 
 const TableCustomer = () => {
   const user = useContext(userContext);
-  const delay = ms => new Promise(res => setTimeout(res, ms));
   const [customers, setCustomer] = useState([]);
-
 
   useEffect(() => {
     user.refreshToken()
@@ -17,8 +15,7 @@ const TableCustomer = () => {
   }, []);
 
   const getCustomer = async () => {
-    await delay(1500)
-    const response = await axios.get(`http://localhost:5000/customers/${user.userId}`);
+    const response = await axios.get(`http://localhost:5000/customers/${user.id}`);
     setCustomer(response.data);
   }
 
