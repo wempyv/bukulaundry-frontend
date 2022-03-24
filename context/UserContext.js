@@ -8,8 +8,6 @@ const userContext = createContext();
 const UserProvider = ({ children }) => {
 
     const router = useRouter();
-
-    const [userId, setUserId] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
@@ -22,8 +20,6 @@ const UserProvider = ({ children }) => {
     const [expire, setExpire] = useState('');
     const id = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
 
-
-
     useEffect(() => {
         refreshToken();
     }, [])
@@ -34,7 +30,6 @@ const UserProvider = ({ children }) => {
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
 
-            setUserId(decoded.userId);
             localStorage.setItem('userId', decoded.userId);
             setName(decoded.name);
             setEmail(decoded.email);
@@ -83,6 +78,7 @@ const UserProvider = ({ children }) => {
         serviceFee,
         refreshToken
     }
+
     return (
         <userContext.Provider value={userProfile}>
             {children}

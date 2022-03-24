@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { useRouter } from "next/router";
+import { userContext } from "../../context/UserContext";
+import axios from 'axios';
 
 const Modal = ({ showModal, setShowModal }) => {
+  const user = useContext(userContext);
+  const router = useRouter();
+
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [whatsappNumber, setWhatsAppNumber] = useState('')
+
+  const addCustomer = async (e) => {
+    e.preventDefault();
+    await axios.post('http://localhost:5000/customer', {
+      user_id: user.id,
+      name_customer: name,
+      address: address,
+      whatsapp_number: whatsappNumber
+    })
+    setShowModal(false);
+    window.location.reload(false);
+  }
+
   return (
     showModal && (
       <div
@@ -31,7 +53,7 @@ const Modal = ({ showModal, setShowModal }) => {
             </div>
             <form
               className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
-              action="#"
+              onSubmit={addCustomer}
             >
               <h3 className="text-xl font-medium text-gray-900 dark:text-white">
                 Tambah data customer
@@ -46,7 +68,7 @@ const Modal = ({ showModal, setShowModal }) => {
                 <input
                   type="text"
                   name="name"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value={name} onChange={(e) => setName(e.target.value)}
                   required
                 />
               </div>
@@ -61,7 +83,7 @@ const Modal = ({ showModal, setShowModal }) => {
                   type="number"
                   name="whatsapp_number"
                   placeholder="contoh : 628776278202"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value={whatsappNumber} onChange={(e) => setWhatsAppNumber(e.target.value)}
                   required
                 />
               </div>
@@ -76,7 +98,7 @@ const Modal = ({ showModal, setShowModal }) => {
                   type="text"
                   name="address"
                   placeholder=""
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white h-28 resize-none"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white h-28 resize-none" value={address} onChange={(e) => setAddress(e.target.value)}
                   required
                 ></textarea>
               </div>
@@ -88,8 +110,8 @@ const Modal = ({ showModal, setShowModal }) => {
               </button>
             </form>
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
     )
   );
 };
