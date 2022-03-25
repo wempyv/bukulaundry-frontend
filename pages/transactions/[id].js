@@ -1,11 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import { userContext } from '../../context/UserContext';
 import AdminLayout from "../../components/layout/AdminLayout";
-import ModalAddItem from "../../components/component/ModalAddItem";
+import axios from "axios";
+import moment from 'moment';
+import 'moment/locale/id'
+moment.locale('id');
 
 const DetailTransaction = () => {
-  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
+  const user = useContext(userContext)
+  const [transaction, setTransaction] = useState([]);
+  const { id } = router.query
+
+  useEffect(() => {
+    user.refreshToken();
+    getTransactionById()
+  }, [])
+
+
+  const getTransactionById = async () => {
+    const response = await axios.get(`http://localhost:5000/transaction/${id}`);
+    setTransaction(response.data);
+  }
+
   return (
     <AdminLayout>
       <div className="flex flex-col w-full md:ml-4 px-2 items-stretch">
@@ -55,41 +73,41 @@ const DetailTransaction = () => {
             </div>
             <div className="md:w-4/12 flex flex-col md:mx-4">
               <h1 className="text-2xl font-semibold text-[#232020]">
-                INVOICE#12378
+                {transaction.transaction_unique}
               </h1>
               <div className="form-group flex flex-col mt-4 mb-4">
                 <span className="text-sm text-[#B89F9F]">Nama Customer</span>
                 <span className="text-[#232020] font-medium">
-                  Wempy Virgana
+                  {transaction.name_customer}
                 </span>
               </div>
               <div className="form-group flex flex-col mb-4">
                 <span className="text-sm text-[#B89F9F]">Total Berat</span>
-                <span className="text-[#232020] font-medium">20Kg</span>
+                <span className="text-[#232020] font-medium">{transaction.total_weight}Kg</span>
               </div>
               <div className="form-group flex flex-col mb-4">
                 <span className="text-sm text-[#B89F9F]">
                   Tanggal Transaksi
                 </span>
                 <span className="text-[#232020] font-medium">
-                  6 Januari 2022
+                  {moment(transaction.createdAt).format('LL')}
                 </span>
               </div>
             </div>
             <div className="md:w-4/12 flex flex-col md:mx-4 md:mt-8">
               <div className="form-group flex flex-col mt-4 mb-4">
                 <span className="text-sm text-[#B89F9F]">Nomor Whatsapp</span>
-                <span className="text-[#232020] font-medium">087742781165</span>
+                <span className="text-[#232020] font-medium">{transaction.whatsapp_number}</span>
               </div>
               <div className="form-group flex flex-col mb-4">
-                <span className="text-sm text-[#B89F9F]">Total Tagihan</span>
-                <span className="text-[#232020] font-medium">Rp120.000</span>
+                <span className="text-sm text-[#B89F9F]">Total Pembayaran</span>
+                <span className="text-[#232020] font-medium">Rp{transaction.total_bill}</span>
               </div>
               <div className="form-group flex flex-col mb-4">
                 <span className="text-sm text-[#B89F9F]">
                   Status Pembayaran
                 </span>
-                <span className="text-[#232020] font-medium">Belum Bayar</span>
+                <span className="text-[#232020] font-medium">{transaction.status_payment}</span>
               </div>
             </div>
           </div>
@@ -100,7 +118,7 @@ const DetailTransaction = () => {
               <div className="form-group flex flex-col mt-4 mb-4">
                 <span className="text-sm text-[#B89F9F]">Alamat Customer</span>
                 <span className="text-[#232020] font-medium">
-                  Jalan Gatot Subroto no 02 tanjung pandan belitung
+                  {transaction.address}
                 </span>
               </div>
               <div className="form-group flex flex-col mb-4">
@@ -108,7 +126,7 @@ const DetailTransaction = () => {
                   Status proses laundry
                 </span>
                 <span className="text-[#232020] font-medium">
-                  Finish(Sudah selesai)
+                  {transaction.status_laundry}
                 </span>
               </div>
             </div>
@@ -116,7 +134,7 @@ const DetailTransaction = () => {
               <div className="form-group flex flex-col mt-4 mb-4">
                 <span className="text-sm text-[#B89F9F]">Status on-demand</span>
                 <span className="text-[#232020] font-medium">
-                  Sedang di antar
+                  {transaction.status_on_demand}
                 </span>
               </div>
             </div>
@@ -129,7 +147,7 @@ const DetailTransaction = () => {
                   <div>
                     <span>👕</span>
                     <span className="text-sm text-[#D7CDCD] mx-2">
-                      Baju Kaos
+
                     </span>
                   </div>
                   <span className="text-sm text-[#B89F9F]">5x</span>

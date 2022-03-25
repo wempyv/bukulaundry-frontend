@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { userContext } from "../../context/UserContext";
+import { useRouter } from "next/router";
 import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/id'
 moment.locale('id');
 
 const TableTransaction = () => {
+  const router = useRouter();
   const user = useContext(userContext);
   const [transaction, setTransaction] = useState([]);
 
@@ -97,7 +99,7 @@ const TableTransaction = () => {
                               </a>
                             </div>
                             <div className="w-4/12 mx-4">
-                              <a href="">
+                              <a className="cursor-pointer" onClick={() => router.push(`transactions/${transaction.id}`)}>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-5 w-5 text-gray-400 hover:text-gray-700 duration-300 ease-in-out"
