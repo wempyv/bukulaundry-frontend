@@ -13,10 +13,14 @@ const DetailTransaction = () => {
   const [transaction, setTransaction] = useState([]);
   const { id } = router.query
 
+  console.log(id)
+
   useEffect(() => {
     user.refreshToken();
-    getTransactionById()
-  }, [])
+    if (router.isReady) {
+      getTransactionById()
+    }
+  }, [router.isReady])
 
 
   const getTransactionById = async () => {
