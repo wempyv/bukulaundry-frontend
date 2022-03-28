@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
+import toast, { Toaster } from 'react-hot-toast';
 const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
 const Modal = ({ showModal, setShowModal, detailItem, setDetailItem }) => {
@@ -13,10 +14,10 @@ const Modal = ({ showModal, setShowModal, detailItem, setDetailItem }) => {
     setShowPicker(false);
   };
 
-
   const addItem = (e) => {
     e.preventDefault()
     const item = {
+      "id": Math.floor(1 + (Math.random() * (1000 - 1))),
       "icon": chosenEmoji.emoji,
       "name_item": nameItem,
       "total": total
@@ -25,6 +26,13 @@ const Modal = ({ showModal, setShowModal, detailItem, setDetailItem }) => {
     setChosenEmoji(null)
     setNameItem('')
     setTotal('')
+    setShowPicker(false)
+
+    const notify = () => toast(`Menambahkan ${nameItem}!`, {
+      icon: chosenEmoji.emoji,
+    });
+
+    notify()
   }
 
 
@@ -34,6 +42,7 @@ const Modal = ({ showModal, setShowModal, detailItem, setDetailItem }) => {
         aria-hidden="true"
         className=" flex overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal h-full md:inset-0 drop-shadow-2xl"
       >
+        <Toaster position="top-right" reverseOrder={false} />
         <div className="relative px-4 w-full max-w-md h-auto">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex justify-end p-2">
