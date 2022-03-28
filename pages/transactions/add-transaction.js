@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import AdminLayout from "../../components/layout/AdminLayout";
 import ModalAddItem from "../../components/component/ModalAddItem";
@@ -13,14 +13,23 @@ const AddTransaction = () => {
   const [nameCustomer, setNameCustomer] = useState('');
   const [address, setAddress] = useState('');
   const [whatsappNumber, setWhatsappNumber] = useState('');
-  const [totalWeight, setTotalWeight] = useState();
+  const [totalWeight, setTotalWeight] = useState(1);
   const [statusPayment, setStatusPayment] = useState('');
   const [laundryType, setLaundryType] = useState("CUCI + GOSOK");
   const [laundryStatus, setLaundryStatus] = useState('');
-  const [additionalBill, setAdditionalBill] = useState();
-  const [inputService, setInputService] = useState();
+  const [additionalBill, setAdditionalBill] = useState(0);
+  const [inputService, setInputService] = useState(false);
   const [statusOnDemand, setStatusOnDemand] = useState('');
   const [detailItem, setDetailItem] = useState([]);
+
+  useEffect(() => {
+    totalChange()
+  }, [])
+
+  const totalChange = () => {
+    const total = totalWeight * checkTypeLaundry() + checkService() + parseInt(additionalBill, 10)
+    return total;
+  }
 
   const checkService = () => {
     if (inputService === true) {
@@ -30,7 +39,7 @@ const AddTransaction = () => {
   }
 
   const checkTypeLaundry = () => {
-    if (laundryType === 'CUCI +GOSOK') {
+    if (laundryType === 'CUCI + GOSOK') {
       return user.priceWashRubbing
     } else if (laundryType === 'CUCI') {
       return user.priceWash
@@ -298,12 +307,12 @@ const AddTransaction = () => {
                     <option value="Selesai(Sudah diterima customer)">Selesai(Sudah diterima customer)</option>
                   </select>
                 </div>
-                <div className="form-group mt-8 flex itTagihan tambahanems-center justify-between w-full md:pr-4">
+                <div className="form-group mt-8 flex items-center justify-between w-full md:pr-4">
                   <label htmlFor="Email" className="text-sm">
                     Total
                   </label>
                   <h1 className="text-2xl font-semibold text-[#CA9E00]">
-                    Rp125.000
+                    Rp{totalChange()}
                   </h1>
                 </div>
               </div>
