@@ -11,9 +11,8 @@ const DetailTransaction = () => {
   const router = useRouter();
   const user = useContext(userContext)
   const [transaction, setTransaction] = useState([]);
+  const [detailItem, setDetailItem] = useState();
   const { id } = router.query
-
-  console.log(id)
 
   useEffect(() => {
     user.refreshToken();
@@ -22,11 +21,12 @@ const DetailTransaction = () => {
     }
   }, [router.isReady])
 
-
   const getTransactionById = async () => {
     const response = await axios.get(`http://localhost:5000/transaction/${id}`);
     setTransaction(response.data);
+    setDetailItem(JSON.parse(response.data.detail_item))
   }
+
 
   return (
     <AdminLayout>
@@ -54,7 +54,7 @@ const DetailTransaction = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fillRule="evenodd"
+                      fillRule="evenodd" Baju Baru
                       d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                       clipRule="evenodd"
                     ></path>
@@ -147,15 +147,17 @@ const DetailTransaction = () => {
                 <div className="flex w-full justify-between px-4 mt-3">
                   <h1 className="text-white font-bold text-xl">Detail item</h1>
                 </div>
-                <div className="flex w-full justify-between px-4 mt-4">
-                  <div>
-                    <span>👕</span>
-                    <span className="text-sm text-[#D7CDCD] mx-2">
-
-                    </span>
+                {typeof detailItem != 'undefined' && detailItem.map((item, index) => (
+                  <div className="flex w-full justify-between px-4 mt-4" key={index}>
+                    <div>
+                      <span>👕</span>
+                      <span className="text-sm text-[#D7CDCD] mx-2">
+                        {item.name_item}
+                      </span>
+                    </div>
+                    <span className="text-sm text-[#B89F9F]">{item.total}x</span>
                   </div>
-                  <span className="text-sm text-[#B89F9F]">5x</span>
-                </div>
+                ))}
               </div>
             </div>
           </div>
