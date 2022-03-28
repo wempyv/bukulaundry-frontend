@@ -307,8 +307,33 @@ const AddTransaction = () => {
                     <option value="Selesai(Sudah diterima customer)">Selesai(Sudah diterima customer)</option>
                   </select>
                 </div>
-                <div className="form-group mt-8 flex items-center justify-between w-full md:pr-4">
+                <h1 className="mt-8 text-2xl font-semibold">Rincihan Pembayaran</h1>
+                <div className="form-group mt-4  flex items-center justify-between w-full md:pr-4 capitalize">
                   <label htmlFor="Email" className="text-sm">
+                    Total berat {totalWeight}kg x Rp{checkTypeLaundry()}
+                  </label>
+                  <h1 className="font-medium text-gray-700">
+                    💰 +Rp{checkTypeLaundry() * totalWeight}
+                  </h1>
+                </div>
+                <div className="form-group  flex items-center justify-between w-full md:pr-4 capitalize">
+                  <label htmlFor="Email" className="text-sm">
+                    Jasa Service
+                  </label>
+                  <h1 className="font-medium text-gray-700">
+                    💰 +Rp{checkService()}
+                  </h1>
+                </div>
+                <div className="form-group  flex items-center justify-between w-full md:pr-4 capitalize">
+                  <label htmlFor="Email" className="text-sm">
+                    Biaya Tambahan
+                  </label>
+                  <h1 className="font-medium text-gray-700">
+                    💰 +Rp{additionalBill}
+                  </h1>
+                </div>
+                <div className="form-group flex items-center mt-2 justify-between w-full md:pr-4">
+                  <label htmlFor="Email" className="text-sm font-semibold">
                     Total
                   </label>
                   <h1 className="text-2xl font-semibold text-[#CA9E00]">
