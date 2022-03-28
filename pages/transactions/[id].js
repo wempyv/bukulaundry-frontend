@@ -6,6 +6,7 @@ import axios from "axios";
 import moment from 'moment';
 import 'moment/locale/id'
 moment.locale('id');
+import QRCode from 'react-qr-code';
 
 const DetailTransaction = () => {
   const router = useRouter();
@@ -70,10 +71,7 @@ const DetailTransaction = () => {
         <section>
           <div className="md:flex">
             <div className="md:w-4/12">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/4/43/WhatsApp_click-to-chat_QR_code.png"
-                className="h-72"
-              />
+              <QRCode value={`https://localhost:3000/invoice/${transaction.transaction_unique}`} />
             </div>
             <div className="md:w-4/12 flex flex-col md:mx-4">
               <h1 className="text-2xl font-semibold text-[#232020]">
@@ -131,6 +129,14 @@ const DetailTransaction = () => {
                 </span>
                 <span className="text-[#232020] font-medium">
                   {transaction.status_laundry}
+                </span>
+              </div>
+              <div className="form-group flex flex-col mb-4">
+                <span className="text-sm text-[#B89F9F]">
+                  Tipe Laundry
+                </span>
+                <span className="text-[#232020] font-medium">
+                  {transaction.type_laundry}
                 </span>
               </div>
             </div>
