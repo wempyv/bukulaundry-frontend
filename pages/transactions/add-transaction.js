@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import AdminLayout from "../../components/layout/AdminLayout";
 import ModalAddItem from "../../components/component/ModalAddItem";
 import axios from 'axios';
+import { userContext } from "../../context/UserContext";
 
 const AddTransaction = () => {
   const router = useRouter();
+  const user = useContext(userContext);
   const [showModal, setShowModal] = useState(false);
 
   const [nameCustomer, setNameCustomer] = useState('');
@@ -21,11 +23,28 @@ const AddTransaction = () => {
   const [detailItem, setDetailItem] = useState([]);
 
   console.log(detailItem)
+  console.log(user.priceWashRubbing)
 
   const addTransactions = async (e) => {
     e.preventDefault()
-    await axios.post('http://localhost:5000/transaction', {
+    const unique = Math.floor(99 + (Math.random() * (99999 - 99)));
+    const totalPayment = totalWeight * user.priceWashRubbing + parseInt(additionalBill, 10)
 
+    await axios.post('http://localhost:5000/transaction', {
+      transaction_unique: `bukulaundry${unique}`,
+      user_id: user.id,
+      name_customer: nameCustomer,
+      address: address,
+      whatsapp_number: whatsappNumber,
+      total_weight: totalWeight,
+      total_bill: totalPayment,
+      status_payment: statusPayment,
+      type_laundry: laundryType,
+      status_laundry: laundryStatus,
+      additional_bill: additionalBill,
+      service: inputService,
+      status_on_demand: statusOnDemand,
+      detail_item: detailItem
     })
     router.push('/transactions');
   }
@@ -104,7 +123,7 @@ const AddTransaction = () => {
                   </label>
                   <input
                     type="number"
-                    className="border my-2 border-gray-300 rounded p-1" value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.whatsappNumber)}
+                    className="border my-2 border-gray-300 rounded p-1" value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.value)}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
@@ -203,7 +222,7 @@ const AddTransaction = () => {
                     <option>Sudah Selesai</option>
                   </select>
                 </div>
-                <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
+                <div className="form-group mt-4 flex flex-col  w-full md:prWempy Virgana-4">
                   <label htmlFor="Total tagihan" className="text-sm">
                     Tagihan tambahan
                   </label>
@@ -305,7 +324,6 @@ const AddTransaction = () => {
                           </svg>
                         </button>
                       </div>
-
                     </div>
                   ))}
                 </div>
