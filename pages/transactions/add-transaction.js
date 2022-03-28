@@ -18,17 +18,30 @@ const AddTransaction = () => {
   const [laundryType, setLaundryType] = useState("CUCI + GOSOK");
   const [laundryStatus, setLaundryStatus] = useState('');
   const [additionalBill, setAdditionalBill] = useState();
-  const [inputService, setInputService] = useState(false);
+  const [inputService, setInputService] = useState();
   const [statusOnDemand, setStatusOnDemand] = useState('');
   const [detailItem, setDetailItem] = useState([]);
 
-  console.log(detailItem)
-  console.log(user.priceWashRubbing)
+  const checkService = () => {
+    if (inputService === true) {
+      return user.serviceFee
+    }
+    return 0
+  }
+
+  const checkTypeLaundry = () => {
+    if (laundryType === 'CUCI +GOSOK') {
+      return user.priceWashRubbing
+    } else if (laundryType === 'CUCI') {
+      return user.priceWash
+    }
+    return user.priceRubbing
+  }
 
   const addTransactions = async (e) => {
     e.preventDefault()
     const unique = Math.floor(99 + (Math.random() * (99999 - 99)));
-    const totalPayment = totalWeight * user.priceWashRubbing + parseInt(additionalBill, 10)
+    const totalPayment = totalWeight * checkTypeLaundry() + parseInt(additionalBill, 10) + checkService()
 
     await axios.post('http://localhost:5000/transaction', {
       transaction_unique: `bukulaundry${unique}`,
