@@ -318,7 +318,7 @@ const AddTransaction = () => {
                 </div>
                 <div className="form-group  flex items-center justify-between w-full md:pr-4 capitalize">
                   <label htmlFor="Email" className="text-sm">
-                    Jasa Service
+                    Jasa Service Antar Jemput
                   </label>
                   <h1 className="font-medium text-gray-700">
                     💰 +Rp{checkService()}
