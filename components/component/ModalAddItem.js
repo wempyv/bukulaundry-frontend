@@ -2,14 +2,31 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
-const Modal = ({ showModal, setShowModal }) => {
+const Modal = ({ showModal, setShowModal, detailItem, setDetailItem }) => {
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [showPicker, setShowPicker] = useState(false);
+  const [nameItem, setNameItem] = useState('');
+  const [total, setTotal] = useState('');
 
   const onEmojiClick = (event, emojiObject) => {
     setChosenEmoji(emojiObject);
     setShowPicker(false);
   };
+
+
+  const addItem = (e) => {
+    e.preventDefault()
+    const item = {
+      "icon": chosenEmoji.emoji,
+      "name_item": nameItem,
+      "total": total
+    }
+    setDetailItem(detailItem => [...detailItem, item])
+    setChosenEmoji(null)
+    setNameItem('')
+    setTotal('')
+  }
+
 
   return (
     showModal && (
@@ -41,7 +58,7 @@ const Modal = ({ showModal, setShowModal }) => {
             </div>
             <form
               className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
-              action="#"
+              onSubmit={addItem}
             >
               <h3 className="text-xl font-medium text-gray-900 dark:text-white">
                 Tambah item
@@ -63,6 +80,8 @@ const Modal = ({ showModal, setShowModal }) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-5/6 p-2.5 dark:bg-gray-600 "
                     placeholder="Contoh : Baju"
                     autoComplete="off"
+                    value={nameItem}
+                    onChange={(e) => setNameItem(e.target.value)}
                     required
                   />
                   <span
@@ -91,6 +110,8 @@ const Modal = ({ showModal, setShowModal }) => {
                   name="jumlah_item"
                   placeholder=""
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  value={total}
+                  onChange={(e) => setTotal(e.target.value)}
                   required
                 />
               </div>

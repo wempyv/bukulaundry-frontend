@@ -2,18 +2,39 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import AdminLayout from "../../components/layout/AdminLayout";
 import ModalAddItem from "../../components/component/ModalAddItem";
+import axios from 'axios';
 
 const AddTransaction = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [inputService, setInputService] = useState(false);
-  const [laundryType, setLaundryType] = useState(1);
   const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
+
+  const [nameCustomer, setNameCustomer] = useState('');
+  const [address, setAddress] = useState('');
+  const [whatsappNumber, setWhatsappNumber] = useState('');
+  const [totalWeight, setTotalWeight] = useState();
+  const [statusPayment, setStatusPayment] = useState('');
+  const [laundryType, setLaundryType] = useState("CUCI + GOSOK");
+  const [laundryStatus, setLaundryStatus] = useState('');
+  const [additionalBill, setAdditionalBill] = useState();
+  const [inputService, setInputService] = useState(false);
+  const [statusOnDemand, setStatusOnDemand] = useState('');
+  const [detailItem, setDetailItem] = useState([]);
+
+  console.log(detailItem)
+
+  const addTransactions = async (e) => {
+    e.preventDefault()
+    await axios.post('http://localhost:5000/transaction', {
+
+    })
+    router.push('/transactions');
+  }
+
   return (
     <AdminLayout>
       <div className="flex flex-col w-full md:ml-4 px-2 items-stretch">
         <section>
           <h1 className="text-2xl font-medium">Tambah Transaksi Baru</h1>
-
           <nav className="flex mt-10 mb-4" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
               <li>
@@ -47,21 +68,21 @@ const AddTransaction = () => {
               </li>
             </ol>
           </nav>
-
           <div className="my-4 items-center">
             <form
               className="w-full md:flex block"
               data-aos="fade-up"
               data-aos-duration="800"
+              onSubmit={addTransactions}
             >
               <div className="md:w-3/5 w-full">
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
-                  <label htmlFor="Nama customer" className="text-sm">
+                  <label htmlFor="Nama customer" className="text-sm" >
                     Nama customer
                   </label>
                   <input
                     type="text"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" value={nameCustomer} onChange={(e) => setNameCustomer(e.target.value)}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
@@ -70,7 +91,7 @@ const AddTransaction = () => {
                   </label>
                   <input
                     type="text"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" value={address} onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
@@ -79,7 +100,7 @@ const AddTransaction = () => {
                   </label>
                   <input
                     type="number"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.whatsappNumber)}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
@@ -89,17 +110,18 @@ const AddTransaction = () => {
                   <input
                     placeholder="Kg"
                     type="text"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" value={totalWeight} onChange={(e) => setTotalWeight(e.target.value)}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
                   <label htmlFor="" className="text-sm">
                     Status Pembayaran
                   </label>
-                  <select className="border my-2 border-gray-300 bg-white rounded p-1">
-                    <option>Pending</option>
-                    <option>Bayar ditempat(Pending)</option>
-                    <option>Sudah dibayar(Sukses)</option>
+                  <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)}>
+                    <option >Pilih Status Pembayaran</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="BAYAR DITEMPAT" >Bayar ditempat(Pending)</option>
+                    <option value="SUDAH DIBAYAR" >Sudah dibayar(Sukses)</option>
                   </select>
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
@@ -111,9 +133,9 @@ const AddTransaction = () => {
                       <input
                         className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#CA9E00] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                         type="radio"
-                        value="5000"
-                        checked={laundryType === 1}
-                        onChange={() => setLaundryType(1)}
+                        value="CUCI + GOSOK"
+                        checked={laundryType === "CUCI + GOSOK"}
+                        onChange={(e) => setLaundryType(e.target.value)}
                       />
                       <label
                         className="form-check-label inline-block text-gray-800"
@@ -126,9 +148,9 @@ const AddTransaction = () => {
                       <input
                         className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#685b2b] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                         type="radio"
-                        value="5000"
-                        checked={laundryType === 2}
-                        onChange={() => setLaundryType(2)}
+                        value="CUCI"
+                        checked={laundryType === "CUCI"}
+                        onChange={(e) => setLaundryType(e.target.value)}
                       />
                       <label
                         className="form-check-label inline-block text-gray-800"
@@ -141,9 +163,9 @@ const AddTransaction = () => {
                       <input
                         className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#232020] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                         type="radio"
-                        value="5000"
-                        checked={laundryType === 3}
-                        onChange={() => setLaundryType(3)}
+                        value="GOSOK"
+                        checked={laundryType === "GOSOK"}
+                        onChange={(e) => setLaundryType(e.target.value)}
                       />
                       <label
                         className="form-check-label inline-block text-gray-800"
@@ -154,20 +176,21 @@ const AddTransaction = () => {
                     </div>
                   </div>
                 </div>
-                <div className={`form-group mt-4  flex-col  w-full md:pr-4 ${laundryType === 1 ? 'flex' : 'hidden'}`}>
+                <div className={`form-group mt-4  flex-col  w-full md:pr-4 ${laundryType === "CUCI + GOSOK" ? 'flex' : 'hidden'}`}>
                   <label htmlFor="" className="text-sm">
                     Status Proses Laundry
                   </label>
-                  <select className="border my-2 border-gray-300 bg-white rounded p-1">
-                    <option>Penerimaan Cucian</option>
-                    <option>Pembasahan(Pre washings)</option>
-                    <option>Pencucian(Washing)</option>
-                    <option>Pengeringan(Drying)</option>
-                    <option>Penyetrikaan(Pressing)</option>
-                    <option>Selesai(Finish)</option>
+                  <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setLaundryStatus(e.target.value)}>
+                    <option>Pilih Proses Laundry</option>
+                    <option value="Penerimaan Cucian">Penerimaan Cucian</option>
+                    <option value="Pembasahan(Pre washings)">Pembasahan(Pre washings)</option>
+                    <option value="Pencucian(Washing)">Pencucian(Washing)</option>
+                    <option value="Pengeringan(Drying)">Pengeringan(Drying)</option>
+                    <option value="Penyetrikaan(Pressing)">Penyetrikaan(Pressing)</option>
+                    <option value="Selesai(Finish)">Selesai(Finish)</option>
                   </select>
                 </div>
-                <div className={`form-group mt-4  flex-col  w-full md:pr-4 ${laundryType === 2 || laundryType === 3 ? 'flex' : 'hidden'}`}>
+                <div className={`form-group mt-4  flex-col  w-full md:pr-4 ${laundryType === "CUCI" || laundryType === "GOSOK" ? 'flex' : 'hidden'}`}>
                   <label htmlFor="" className="text-sm">
                     Status Proses Laundry
                   </label>
@@ -183,7 +206,7 @@ const AddTransaction = () => {
                   <input
                     type="number"
                     placeholder="Rp"
-                    className="border my-2 border-gray-300 rounded p-1"
+                    className="border my-2 border-gray-300 rounded p-1" value={additionalBill} onChange={(e) => setAdditionalBill(e.target.value)}
                   />
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
@@ -231,11 +254,12 @@ const AddTransaction = () => {
                   <label htmlFor="" className="text-sm">
                     Status on-demand
                   </label>
-                  <select className="border my-2 border-gray-300 bg-white rounded p-1">
-                    <option>Sedang di proses(Pending)</option>
-                    <option>Diantar ke-alamat tujuan(Pending)</option>
-                    <option>Pending(Customer tidak ada dirumah)</option>
-                    <option>Selesai(Sudah diterima customer)</option>
+                  <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusOnDemand(e.target.value)}>
+                    <option>Pilih Status on-demand</option>
+                    <option value="Sedang di proses(Pending)">Sedang di proses(Pending)</option>
+                    <option value="Diantar ke-alamat tujuan">Diantar ke-alamat tujuan(Pending)</option>
+                    <option value="Pending(Customer tidak ada dirumah)">Pending(Customer tidak ada dirumah)</option>
+                    <option value="Selesai(Sudah diterima customer)">Selesai(Sudah diterima customer)</option>
                   </select>
                 </div>
                 <div className="form-group mt-8 flex itTagihan tambahanems-center justify-between w-full md:pr-4">
@@ -261,15 +285,17 @@ const AddTransaction = () => {
                       +
                     </a>
                   </div>
-                  <div className="flex w-full justify-between px-4 mt-4">
-                    <div>
-                      <span>👕</span>
-                      <span className="text-sm text-[#D7CDCD] mx-2">
-                        Baju Kaos
-                      </span>
+                  {detailItem !== [] && detailItem.map((item, index) => (
+                    <div className="flex w-full justify-between px-4 mt-4">
+                      <div>
+                        <span>{item.icon}</span>
+                        <span className="text-sm text-[#D7CDCD] mx-2">
+                          {item.name_item}
+                        </span>
+                      </div>
+                      <span className="text-sm text-[#B89F9F]">{item.total}x</span>
                     </div>
-                    <span className="text-sm text-[#B89F9F]">5x</span>
-                  </div>
+                  ))}
                 </div>
                 <button
                   type="submit"
@@ -281,7 +307,7 @@ const AddTransaction = () => {
             </form>
           </div>
         </section>
-        <ModalAddItem showModal={showModal} setShowModal={setShowModal} />
+        <ModalAddItem showModal={showModal} setShowModal={setShowModal} detailItem={detailItem} setDetailItem={setDetailItem} />
       </div>
     </AdminLayout>
   );
