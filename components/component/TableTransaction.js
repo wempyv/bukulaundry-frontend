@@ -23,6 +23,11 @@ const TableTransaction = () => {
     setTransaction(response.data);
   }
 
+  const deleteTransaction = async (id) => {
+    await axios.delete(`http://localhost:5000/transaction/${id}`);
+    getTransaction();
+  }
+
   return (
     <div className="flex flex-col w-full ">
       <div className="overflow-x-auto">
@@ -123,7 +128,7 @@ const TableTransaction = () => {
                               </a>
                             </div>
                             <div className="w-4/12">
-                              <a href="">
+                              <a className="cursor-pointer" onClick={() => deleteTransaction(transaction.id)}>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-5 w-5 text-gray-400 hover:text-gray-700 duration-300 ease-in-out"
@@ -152,7 +157,7 @@ const TableTransaction = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
