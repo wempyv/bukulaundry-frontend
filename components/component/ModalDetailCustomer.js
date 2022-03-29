@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import { userContext } from "../../context/UserContext";
+import { useRouter } from "next/router";
 import moment from 'moment';
 import 'moment/locale/id'
 moment.locale('id');
 
 const ModalCustomer = ({ showModal, setShowModal, customerDetail, setCustomerDetail }) => {
+  const router = useRouter();
   const user = useContext(userContext);
 
   return (
@@ -36,7 +38,7 @@ const ModalCustomer = ({ showModal, setShowModal, customerDetail, setCustomerDet
               </button>
             </div>
 
-            <form
+            <div
               className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
             >
               <h3 className="text-xl font-medium text-gray-900 dark:text-white">
@@ -79,12 +81,11 @@ const ModalCustomer = ({ showModal, setShowModal, customerDetail, setCustomerDet
                 <p className="font-medium text-gray-900">{customerDetail.address}</p>
               </div>
               <button
-                type="submit"
-                className="w-full text-white bg-[#232020] hover:scale-105 duration-300 ease-out focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                className="w-full text-white bg-[#232020] hover:scale-105 duration-300 ease-out focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " onClick={() => router.push(`add-customer-transaction/${customerDetail.id}`)}
               >
                 Buat Transaksi
               </button>
-            </form>
+            </div>
           </div>
         </div >
       </div >
