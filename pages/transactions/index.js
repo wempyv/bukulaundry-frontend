@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import TableTransaction from "../../components/component/TableTransaction";
 import AdminLayout from "../../components/layout/AdminLayout";
 
 const Index = () => {
   const router = useRouter();
+  const [input, setInput] = useState('');
+
   return (
     <AdminLayout>
       <div className="flex flex-col w-full md:ml-4 px-2 items-stretch">
@@ -22,11 +24,11 @@ const Index = () => {
             <input
               type="text"
               className="h-10 border rounded-md w-full pl-2"
-              placeholder="Cari data transaksi"
+              placeholder="Cari data transaksi" value={input} onChange={(e) => setInput(e.target.value)}
             />
           </div>
           <div className="md:flex block items-center">
-            <TableTransaction />
+            <TableTransaction input={input} />
           </div>
         </section>
       </div>

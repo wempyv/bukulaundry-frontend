@@ -6,12 +6,16 @@ import moment from 'moment';
 import 'moment/locale/id'
 moment.locale('id');
 
-const TableTransaction = () => {
+const TableTransaction = ({ input }) => {
   const router = useRouter();
   const user = useContext(userContext);
   const [transaction, setTransaction] = useState([]);
 
-  console.log(transaction)
+  if (input.length > 0) {
+    transaction = transaction.filter((i) => {
+      return i.name_customer.toLowerCase().match(input)
+    })
+  }
 
   useEffect(() => {
     user.refreshToken();
