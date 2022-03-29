@@ -1,11 +1,13 @@
 import React from "react";
 import moment from 'moment';
+import { useRouter } from "next/router";
 import 'moment/locale/id'
 moment.locale('id');
 
 const CardRecentTransaction = ({ transaction }) => {
+  const router = useRouter()
   return (
-    <div className="flex items-center text-[#232020] my-3 text-sm whitespace-nowrap">
+    <div className="flex items-center text-[#232020] my-3 text-sm whitespace-nowrap cursor-pointer hover:bg-gray-50" onClick={() => router.push(`transactions/${transaction.id}`)}>
       <div className="w-2/12">
         <div className="w-12 h-12 bg-[#EBFDF0] rounded-full flex items-center justify-center">
           <svg

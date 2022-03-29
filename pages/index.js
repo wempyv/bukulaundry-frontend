@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import CardRecentTransaction from "../components/component/CardRecentTransaction";
 import AdminLayout from "../components/layout/AdminLayout";
 CardRecentTransaction;
@@ -8,7 +7,6 @@ import { userContext } from '../context/UserContext';
 import axios from 'axios';
 
 const index = () => {
-  const router = useRouter();
   const user = useContext(userContext);
   const [transaction, setTransaction] = useState([])
 
@@ -118,16 +116,14 @@ const index = () => {
         <section className="md:flex block md:flex-row flex-col mt-4">
           <div className="md:w-3/5  flex flex-col overflow-x-auto h-80 overflow-y-auto">
             {transactionSuccess.map((transaction) => (
-              <CardRecentTransaction transaction={transaction} key={transaction.id} onClick={() => router.push(`transactions/${transaction.id}`)} />
+              <CardRecentTransaction transaction={transaction} key={transaction.id} />
             ))}
           </div>
           <div className="md:w-2/5 flex flex-col bg-[#232020]  md:mr-5 rounded-lg px-4 mt-4">
             <h1 className="text-white font-bold my-3">
               Menunggu untuk di proses
             </h1>
-            {transactionPending.map((transaction) => (
-              <WaitTransaction transaction={transaction} key={transaction.id} />
-            ))}
+            <WaitTransaction transaction={transactionPending} />
           </div>
         </section>
       </div>
