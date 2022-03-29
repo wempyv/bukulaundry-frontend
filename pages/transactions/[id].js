@@ -157,12 +157,12 @@ const DetailTransaction = () => {
               </div>
             </div>
             <div className="md:w-5/12 flex flex-col mb-8">
-              <div className="h-96 overflow-y-auto bg-[#232020] rounded-md py-5 mt-6 md:mt-0 md:py-2">
+              <div className="overflow-y-auto bg-[#232020] rounded-md py-5 mt-6 md:mt-0 md:py-2">
                 <div className="flex w-full justify-between px-4 mt-3">
                   <h1 className="text-white font-bold text-xl">Detail item</h1>
                 </div>
                 {typeof detailItem != 'undefined' && detailItem.map((item, index) => (
-                  <div className="flex w-full justify-between px-4 mt-4" key={index}>
+                  <div className="flex w-full justify-between px-4 mt-4 mb-4" key={index}>
                     <div>
                       <span>{item.icon}</span>
                       <span className="text-sm text-[#D7CDCD] mx-2">

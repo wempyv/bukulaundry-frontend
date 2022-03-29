@@ -81,7 +81,7 @@ const TableTransaction = () => {
                         <td className="py-4 px-3 md:px-0 text-sm font-medium text-right  ">
                           <div className="flex">
                             <div className="w-4/12">
-                              <a href="">
+                              <a className="cursor-pointer" onClick={() => router.push(`transactions/edit-transaction/${transaction.id}`)}>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-5 w-5  text-gray-400 hover:text-gray-700 duration-300 ease-in-out"
