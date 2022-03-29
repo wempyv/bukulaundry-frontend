@@ -9,8 +9,10 @@ const EditTransaction = () => {
   const router = useRouter();
   const { id } = router.query
   const user = useContext(userContext);
+
   const [showModal, setShowModal] = useState(false);
 
+  const [transactionUnique, setTransactionUnique] = useState('');
   const [nameCustomer, setNameCustomer] = useState('');
   const [address, setAddress] = useState('');
   const [whatsappNumber, setWhatsappNumber] = useState('');
@@ -34,6 +36,7 @@ const EditTransaction = () => {
 
   const getTransactionById = async () => {
     const response = await axios.get(`http://localhost:5000/transaction/${id}`);
+    setTransactionUnique(response.data.transaction_unique);
     setNameCustomer(response.data.name_customer);
     setAddress(response.data.address);
     setWhatsappNumber(response.data.whatsapp_number);
@@ -70,11 +73,10 @@ const EditTransaction = () => {
 
   const addTransactions = async (e) => {
     e.preventDefault()
-    const unique = Math.floor(99 + (Math.random() * (99999 - 99)));
     const totalPayment = totalWeight * checkTypeLaundry() + parseInt(additionalBill, 10) + checkService()
 
-    await axios.post('http://localhost:5000/transaction', {
-      transaction_unique: `bukulaundry${unique}`,
+    await axios.patch(`http://localhost:5000/transaction/${id}`, {
+      transaction_unique: transactionUnique,
       user_id: user.id,
       name_customer: nameCustomer,
       address: address,
@@ -100,7 +102,7 @@ const EditTransaction = () => {
     <AdminLayout>
       <div className="flex flex-col w-full md:ml-4 px-2 items-stretch">
         <section>
-          <h1 className="text-2xl font-medium">Tambah Transaksi Baru</h1>
+          <h1 className="text-2xl font-medium">Edit Transaksi</h1>
           <nav className="flex mt-10 mb-4" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
               <li>
@@ -128,7 +130,7 @@ const EditTransaction = () => {
                     ></path>
                   </svg>
                   <span className="ml-1 text-sm  text-[#232020] md:ml-2 dark:text-gray-500">
-                    Tambah Transaksi
+                    Edit Transaksi {nameCustomer}
                   </span>
                 </div>
               </li>
@@ -184,7 +186,7 @@ const EditTransaction = () => {
                     Status Pembayaran
                   </label>
                   <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)}>
-                    <option >Pilih Status Pembayaran</option>
+                    <option value={statusPayment} selected>{statusPayment}</option>
                     <option value="PENDING">Pending</option>
                     <option value="BAYAR DITEMPAT" >Bayar ditempat(Pending)</option>
                     <option value="SUDAH DIBAYAR" >Sudah dibayar(Sukses)</option>
@@ -247,7 +249,7 @@ const EditTransaction = () => {
                     Status Proses Laundry
                   </label>
                   <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setLaundryStatus(e.target.value)}>
-                    <option>Pilih Proses Laundry</option>
+                    <option value={laundryStatus} selected>{laundryStatus}</option>
                     <option value="Penerimaan Cucian">Penerimaan Cucian</option>
                     <option value="Pembasahan(Pre washings)">Pembasahan(Pre washings)</option>
                     <option value="Pencucian(Washing)">Pencucian(Washing)</option>
@@ -261,6 +263,7 @@ const EditTransaction = () => {
                     Status Proses Laundry
                   </label>
                   <select className="border my-2 border-gray-300 bg-white rounded p-1">
+                    <option value={laundryStatus} selected>{laundryStatus}</option>
                     <option>Penerimaan Cucian(Belum Selesai)</option>
                     <option>Sudah Selesai</option>
                   </select>
@@ -321,7 +324,7 @@ const EditTransaction = () => {
                     Status on-demand
                   </label>
                   <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusOnDemand(e.target.value)}>
-                    <option>Pilih Status on-demand</option>
+                    <option value={statusOnDemand} selected>{statusOnDemand}</option>
                     <option value="Sedang di proses(Pending)">Sedang di proses(Pending)</option>
                     <option value="Diantar ke-alamat tujuan">Diantar ke-alamat tujuan(Pending)</option>
                     <option value="Pending(Customer tidak ada dirumah)">Pending(Customer tidak ada dirumah)</option>
