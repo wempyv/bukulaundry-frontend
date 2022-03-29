@@ -110,7 +110,7 @@ const index = () => {
             Riwayat Transaksi
           </h1>
           <p className="text-xs font-light text-gray-400">
-            Riwayat transaksi yang berstatus sukses
+            Transaksi yang sudah dibayar
           </p>
         </section>
         <section className="md:flex block md:flex-row flex-col mt-4">
