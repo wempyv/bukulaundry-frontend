@@ -130,7 +130,7 @@ const EditTransaction = () => {
                     ></path>
                   </svg>
                   <span className="ml-1 text-sm  text-[#232020] md:ml-2 dark:text-gray-500">
-                    Edit Transaksi {nameCustomer}
+                    Edit Transaksi
                   </span>
                 </div>
               </li>
@@ -402,7 +402,7 @@ const EditTransaction = () => {
                   type="submit"
                   className="rounded w-full h-[2.8rem] bg-[#232020] text-white text-sm mt-2 hover:bg-[#111010] hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex items-center justify-center"
                 >
-                  Tambah Transaksi
+                  Simpan Transaksi
                 </button>
               </div>
             </form>
