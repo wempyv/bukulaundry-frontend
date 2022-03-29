@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from 'axios';
 import { useRouter } from "next/router";
 import AuthLayout from "../../components/layout/AuthLayout";
+import { userContext } from '../../context/UserContext';
 
 const Login = () => {
   const router = useRouter();
+  const user = useContext(userContext);
   const [msg, setMsg] = useState("");
 
   const [email, setEmail] = useState("");
@@ -17,6 +19,7 @@ const Login = () => {
         email: email,
         password: password,
       });
+      user.refreshToken();
       router.push("/");
     } catch (error) {
       if (error.response) {

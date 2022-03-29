@@ -1,6 +1,9 @@
 import React from "react";
+import moment from 'moment';
+import 'moment/locale/id'
+moment.locale('id');
 
-const WaitTransaction = () => {
+const WaitTransaction = ({ transaction }) => {
   return (
     <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 h-full">
       <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -18,7 +21,7 @@ const WaitTransaction = () => {
                   scope="col"
                   className="text-sm font-normal text-white  py-2 text-left"
                 >
-                  Tanggal masuk
+                  Tanggal Transaksi
                 </th>
                 <th
                   scope="col"
@@ -31,10 +34,10 @@ const WaitTransaction = () => {
             <tbody>
               <tr>
                 <td className="text-sm text-[#D7CDCD] font-light  py-4 whitespace-nowrap">
-                  Wempy Virgana
+                  {transaction.name_customer}
                 </td>
                 <td className="text-sm text-[#D7CDCD] font-light py-4 whitespace-nowrap">
-                  2 Januari 2022
+                  {moment(transaction.createdAt).format('LL')}
                 </td>
                 <td className="text-sm text-[#D7CDCD] font-medium  py-4 whitespace-nowrap">
                   Pending

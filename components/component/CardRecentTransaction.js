@@ -1,6 +1,9 @@
 import React from "react";
+import moment from 'moment';
+import 'moment/locale/id'
+moment.locale('id');
 
-const CardRecentTransaction = () => {
+const CardRecentTransaction = ({ transaction }) => {
   return (
     <div className="flex items-center text-[#232020] my-3 text-sm whitespace-nowrap">
       <div className="w-2/12">
@@ -22,13 +25,13 @@ const CardRecentTransaction = () => {
         </div>
       </div>
       <div className="w-4/12">
-        <h1>Maudy ayundha</h1>
+        <h1>{transaction.name_customer}</h1>
       </div>
       <div className="w-3/12 md:mx-0 mx-6">
-        <h1>1 Januari 2022</h1>
+        <h1>{moment(transaction.createdAt).format('LL')}</h1>
       </div>
       <div className="w-3/12">
-        <h1 className="text-[#CA9E00] font-medium">+Rp120.000</h1>
+        <h1 className="text-[#CA9E00] font-medium">+Rp{transaction.total_bill}</h1>
       </div>
     </div>
   );

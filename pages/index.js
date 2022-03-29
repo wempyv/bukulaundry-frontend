@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import CardRecentTransaction from "../components/component/CardRecentTransaction";
 import AdminLayout from "../components/layout/AdminLayout";
 CardRecentTransaction;
 import WaitTransaction from "../components/component/WaitTransaction";
+import { userContext } from '../context/UserContext';
+import axios from 'axios';
 
 const index = () => {
+  const router = useRouter();
+  const user = useContext(userContext);
+  const [transaction, setTransaction] = useState([])
+
+  useEffect(() => {
+    user.refreshToken()
+    getTransaction(user.id)
+  }, [user.id])
+
+  const getTransaction = async (id) => {
+    const response = await axios.get(`http://localhost:5000/transactions/${id}`)
+    setTransaction(response.data);
+  }
+
+  const transactionSuccess = transaction.filter((i) => {
+    return i.status_payment.match('SUDAH DIBAYAR')
+  })
+
+  const transactionPending = transaction.filter((i) => {
+    return i.status_laundry.match('Penerimaan Cucian')
+  })
+
+  const countBalance = transactionSuccess.reduce(function (prev, current) {
+    return prev + +current.total_bill
+  }, 0);
+
+
   return (
     <AdminLayout>
       <div className="flex flex-col w-full md:ml-4 px-2 items-stretch">
@@ -29,7 +59,7 @@ const index = () => {
                 </svg>
               </div>
               <span className="text-xs text-gray-400 mt-4">Saldo</span>
-              <span className="text-xl font-medium">Rp980.000</span>
+              <span className="text-xl font-medium">Rp{countBalance}</span>
             </div>
             <div className="card bg-[#E8F0FB] md:w-4/12 my-2 flex flex-col p-5 rounded-xl md:mr-5">
               <div className="h-[50px] w-[50px] bg-[#232020] text-white items-center flex justify-center rounded-2xl">
@@ -51,7 +81,7 @@ const index = () => {
               <span className="text-xs text-gray-400 mt-4">
                 Total Transaksi
               </span>
-              <span className="text-xl font-medium">250</span>
+              <span className="text-xl font-medium">{transaction.length}</span>
             </div>
             <div className="card bg-[#FFEFE7] md:w-4/12 my-2 flex flex-col p-5 rounded-xl md:mr-5">
               <div className="h-[50px] w-[50px] bg-[#232020] text-white items-center flex justify-center rounded-2xl">
@@ -73,7 +103,7 @@ const index = () => {
               <span className="text-xs text-gray-400 mt-4">
                 Sedang Menunggu
               </span>
-              <span className="text-xl font-medium">34</span>
+              <span className="text-xl font-medium">{transactionPending.length}</span>
             </div>
           </div>
         </section>
@@ -86,17 +116,18 @@ const index = () => {
           </p>
         </section>
         <section className="md:flex block md:flex-row flex-col mt-4">
-          <div className="md:w-3/5  flex flex-col  overflow-x-auto">
-            <CardRecentTransaction />
-            <CardRecentTransaction />
-            <CardRecentTransaction />
-            <CardRecentTransaction />
+          <div className="md:w-3/5  flex flex-col overflow-x-auto h-80 overflow-y-auto">
+            {transactionSuccess.map((transaction) => (
+              <CardRecentTransaction transaction={transaction} key={transaction.id} onClick={() => router.push(`transactions/${transaction.id}`)} />
+            ))}
           </div>
           <div className="md:w-2/5 flex flex-col bg-[#232020]  md:mr-5 rounded-lg px-4 mt-4">
             <h1 className="text-white font-bold my-3">
               Menunggu untuk di proses
             </h1>
-            <WaitTransaction />
+            {transactionPending.map((transaction) => (
+              <WaitTransaction transaction={transaction} key={transaction.id} />
+            ))}
           </div>
         </section>
       </div>
