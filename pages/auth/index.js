@@ -106,6 +106,19 @@ const Login = () => {
                 Buat akun
               </a>
             </p>
+            <p
+              className="text-sm"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
+              Mau cek invoice ?
+              <a
+                onClick={() => router.push("/bukulaundri-customer")}
+                className="text-blue-600 hover:text-blue-900 duration-300 ease-in-out cursor-pointer"
+              >
+                Cek invoice
+              </a>
+            </p>
           </form>
         </div>
         <div
