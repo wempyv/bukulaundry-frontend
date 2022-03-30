@@ -58,7 +58,7 @@ const CheckInvoice = () => {
             <p className="text-sm">
               Membuat Transaksi Baru ?
               <a
-                onClick={() => router.push("/add-transaction")}
+                onClick={() => router.push("/bukulaundri-customer")}
                 className="
               text-blue-600
               hover:text-blue-900

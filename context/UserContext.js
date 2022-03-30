@@ -20,9 +20,9 @@ const UserProvider = ({ children }) => {
     const [expire, setExpire] = useState('');
     const id = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
 
-    useEffect(() => {
-        refreshToken();
-    }, [])
+    // useEffect(() => {
+    //     refreshToken();
+    // }, [])
 
     const refreshToken = async () => {
         try {

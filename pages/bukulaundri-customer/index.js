@@ -60,12 +60,12 @@ const FindLaundry = () => {
               data-aos="fade-right"
               data-aos-duration="1000"
             >
-              Cek data item di invoice ?
+              Cek invoice ?
               <a
-                onClick={() => router.push("/add-transaction/check-invoice")}
+                onClick={() => router.push("/bukulaundri-customer/check-invoice")}
                 className="text-blue-600 hover:text-blue-900 duration-300 ease-in-out cursor-pointer"
               >
-                Check invoice
+                Cek invoice
               </a>
             </p>
           </form>
