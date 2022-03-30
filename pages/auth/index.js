@@ -106,19 +106,6 @@ const Login = () => {
                 Buat akun
               </a>
             </p>
-            <p
-              className="text-sm mt-5"
-              data-aos="fade-right"
-              data-aos-duration="1000"
-            >
-              Buat transaksi laundry ?
-              <a
-                onClick={() => router.push("/bukulaundri-customer")}
-                className="text-blue-600 hover:text-blue-900 duration-300 ease-in-out cursor-pointer"
-              >
-                Buat transaksi
-              </a>
-            </p>
           </form>
         </div>
         <div
