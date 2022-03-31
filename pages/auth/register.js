@@ -16,8 +16,10 @@ const Register = () => {
 
   const Register = async (e) => {
     e.preventDefault();
+    const unique = Math.floor(99 + (Math.random() * (99999 - 99)));
     try {
       await axios.post("http://localhost:5000/users", {
+        id_laundry: `laundri${unique}`,
         name: name,
         email: email,
         password: password,

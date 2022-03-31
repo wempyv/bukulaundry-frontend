@@ -1,8 +1,7 @@
-import React from "react";
 import { useRouter } from "next/router";
 import AuthLayout from "../../components/layout/AuthLayout";
 
-const FindLaundry = () => {
+const CheckInvoice = () => {
   const router = useRouter();
   return (
     <AuthLayout>
@@ -13,14 +12,14 @@ const FindLaundry = () => {
             data-aos="fade-right"
             data-aos-duration="500"
           >
-            Tambah Transaksi
+            Cek invoice
           </h1>
           <p
             className="text-gray-300 text-sm w-[16rem] mb-8"
             data-aos="fade-right"
             data-aos-duration="500"
           >
-            Masukan ID Laundry untuk membuat transaksi baru
+            Masukan kode invoice anda
           </p>
           <form
             className="flex flex-col"
@@ -29,11 +28,12 @@ const FindLaundry = () => {
           >
             <div className="form-group mt-4 flex flex-col">
               <label htmlFor="Email" className="text-sm">
-                ID Laundry
+                Kode Invoice
               </label>
               <input
                 type="text"
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-3"
+                placeholder="Contoh : INVOICE#2728"
               />
             </div>
 
@@ -53,19 +53,22 @@ const FindLaundry = () => {
             ease-in-out
           "
             >
-              Cari laundry
+              Cari Invoice
             </button>
-            <p
-              className="text-sm"
-              data-aos="fade-right"
-              data-aos-duration="1000"
-            >
-              Cek invoice ?
+            <p className="text-sm">
+              Membuat Transaksi Baru ?
               <a
-                onClick={() => router.push("/bukulaundri-customer/check-invoice")}
-                className="text-blue-600 hover:text-blue-900 duration-300 ease-in-out cursor-pointer"
+                onClick={() => router.push("/bukucustomer")}
+                className="
+              text-blue-600
+              hover:text-blue-900
+              duration-300
+              ease-in-out
+              md:pb-24
+              cursor-pointer
+            "
               >
-                Cek invoice
+                Buat Transaksi
               </a>
             </p>
           </form>
@@ -73,10 +76,10 @@ const FindLaundry = () => {
         <div
           className="md:w-6/12 w-0 fixed top-0 right-0"
           data-aos="fade-left"
-          data-aos-duration="800"
+          data-aos-duration="500"
         >
           <img
-            src="../../assets/add-transaction.jpg"
+            src="../../assets/check-invoice.jpg"
             className="h-screen w-screen object-cover"
             alt=""
           />
@@ -86,4 +89,4 @@ const FindLaundry = () => {
   );
 };
 
-export default FindLaundry;
+export default CheckInvoice;
