@@ -66,6 +66,7 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
+                required
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
@@ -77,6 +78,7 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
+                required
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
@@ -88,6 +90,7 @@ const Register = () => {
                 value={confPassword}
                 onChange={(e) => setConfPassword(e.target.value)}
                 type="password"
+                required
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
@@ -99,6 +102,7 @@ const Register = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 type="text"
+                required
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
@@ -110,6 +114,7 @@ const Register = () => {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 type="text"
+                required
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
@@ -121,6 +126,7 @@ const Register = () => {
                 value={whatsapp_number}
                 onChange={(e) => setWhatsAppNumber(e.target.value)}
                 type="number"
+                required
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-1"
               />
             </div>
