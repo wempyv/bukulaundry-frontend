@@ -73,6 +73,7 @@ const AddTransactionFromCustomer = () => {
     const deleteItem = (itemId) => {
         setDetailItem(detailItem.filter(({ id }) => id !== itemId));
     };
+
     return (
         <div className="flex flex-col w-full  px-2 items-center  justify-center">
             <section className="md:w-2/5 w-full mt-5">
