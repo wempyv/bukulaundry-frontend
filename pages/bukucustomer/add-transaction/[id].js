@@ -2,13 +2,13 @@ import { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import ModalAddItem from '../../../components/component/ModalAddItem'
 import axios from 'axios';
-import { userContext } from "../../../context/UserContext";
 
 const AddTransactionFromCustomer = () => {
     const router = useRouter();
-    const user = useContext(userContext);
-    const [showModal, setShowModal] = useState(false);
+    const { id } = router.query
 
+    const [user, setUser] = useState([])
+    const [showModal, setShowModal] = useState(false);
     const [nameCustomer, setNameCustomer] = useState('');
     const [address, setAddress] = useState('');
     const [whatsappNumber, setWhatsappNumber] = useState('');
@@ -21,9 +21,19 @@ const AddTransactionFromCustomer = () => {
     const [statusOnDemand, setStatusOnDemand] = useState('');
     const [detailItem, setDetailItem] = useState([]);
 
+    console.log(user)
+
     useEffect(() => {
         totalChange()
-    }, [])
+        if (router.isReady) {
+            getLaundry()
+        }
+    }, [router.isReady])
+
+    const getLaundry = async () => {
+        const response = await axios.get(`http://localhost:5000/getlaundry/${id}`)
+        setUser(response.data)
+    }
 
     const totalChange = () => {
         const total = totalWeight * checkTypeLaundry() + checkService() + parseInt(additionalBill, 10)
@@ -53,7 +63,7 @@ const AddTransactionFromCustomer = () => {
 
         await axios.post('http://localhost:5000/transaction', {
             transaction_unique: `bukulaundry${unique}`,
-            user_id: user.id,
+            // user_id: user.id,
             name_customer: nameCustomer,
             address: address,
             whatsapp_number: whatsappNumber,
@@ -78,7 +88,14 @@ const AddTransactionFromCustomer = () => {
         <div className="flex flex-col w-full  px-2 items-center  justify-center">
             <section className="md:w-2/5 w-full mt-5">
                 <h1 className="text-2xl font-medium">Buat Transaksi</h1>
-                <div className="my-4 items-center">
+                <div className="my-5 text-sm">
+                    <p>Transaksi kamu di <span className="font-medium">{user.name}</span></p>
+                    <p>🌊 Cuci + Gosok : <span className="font-medium">Rp{user.price_wash_rubbing}</span></p>
+                    <p>🏄 Cuci : <span className="font-medium">Rp{user.price_wash}</span></p>
+                    <p>🧲 Gosok : <span className="font-medium">Rp{user.price_rubbing}</span></p>
+                    <p>🛵 Biaya antar jemput : <span className="font-medium">Rp{user.service_fee}</span></p>
+                </div>
+                <div className="my-1 items-center">
                     <form
                         className="w-full flex flex-col"
                         data-aos="fade-up"

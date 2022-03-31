@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import AuthLayout from "../../components/layout/AuthLayout";
 
 const FindLaundry = () => {
   const router = useRouter();
+  const [idLaundry, setIdLaundry] = useState('');
+
+  const redirectToTransaction = (e) => {
+    e.preventDefault()
+    router.push(`/bukucustomer/add-transaction/${idLaundry}`)
+  }
   return (
     <AuthLayout>
       <section className="flex">
@@ -26,13 +32,15 @@ const FindLaundry = () => {
             className="flex flex-col"
             data-aos="fade-right"
             data-aos-duration="800"
+            onSubmit={redirectToTransaction}
           >
             <div className="form-group mt-4 flex flex-col">
               <label htmlFor="Email" className="text-sm">
                 ID Laundry
               </label>
               <input
-                type="text"
+                type="text" required
+                value={idLaundry} onChange={(e) => setIdLaundry(e.target.value)}
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-3"
               />
             </div>
