@@ -15,7 +15,7 @@ const AddTransactionFromCustomer = () => {
     const [totalWeight, setTotalWeight] = useState(1);
     const [statusPayment, setStatusPayment] = useState('');
     const [laundryType, setLaundryType] = useState("CUCI + GOSOK");
-    const [laundryStatus, setLaundryStatus] = useState('');
+    const [laundryStatus, setLaundryStatus] = useState('Menunggu konfirmasi admin');
     const [additionalBill, setAdditionalBill] = useState(0);
     const [inputService, setInputService] = useState(false);
     const [statusOnDemand, setStatusOnDemand] = useState('');
@@ -63,7 +63,7 @@ const AddTransactionFromCustomer = () => {
 
         await axios.post('http://localhost:5000/transaction', {
             transaction_unique: `bukulaundry${unique}`,
-            // user_id: user.id,
+            user_id: user.id,
             name_customer: nameCustomer,
             address: address,
             whatsapp_number: whatsappNumber,
@@ -77,7 +77,7 @@ const AddTransactionFromCustomer = () => {
             status_on_demand: statusOnDemand,
             detail_item: detailItem
         })
-        router.push('/transactions');
+        router.push('/bukucustomer');
     }
 
     const deleteItem = (itemId) => {
