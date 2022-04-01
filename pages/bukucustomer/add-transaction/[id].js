@@ -75,7 +75,9 @@ const AddTransactionFromCustomer = () => {
             status_on_demand: statusOnDemand,
             detail_item: detailItem
         })
-        router.push('/bukucustomer');
+
+        inputService ? router.push('/bukucustomer/waiting-courier') : router.push('/bukucustomer/waiting-item')
+
     }
 
     const deleteItem = (itemId) => {
