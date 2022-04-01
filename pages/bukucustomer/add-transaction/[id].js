@@ -110,6 +110,7 @@ const AddTransactionFromCustomer = () => {
                                         <input
                                             type="text"
                                             className="border my-2 border-gray-300 rounded p-1" value={nameCustomer} onChange={(e) => setNameCustomer(e.target.value)}
+                                            required
                                         />
                                     </div>
                                     <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
@@ -118,7 +119,9 @@ const AddTransactionFromCustomer = () => {
                                         </label>
                                         <input
                                             type="text"
-                                            className="border my-2 border-gray-300 rounded p-1" value={address} onChange={(e) => setAddress(e.target.value)}
+                                            className="border my-2
+                                        border-gray-300 rounded p-1" value={address} onChange={(e) => setAddress(e.target.value)}
+                                            required
                                         />
                                     </div>
                                     <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
@@ -127,7 +130,8 @@ const AddTransactionFromCustomer = () => {
                                         </label>
                                         <input
                                             type="number"
-                                            className="border my-2 border-gray-300 rounded p-1" value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.value)}
+                                            className="border my-2
+                                             border-gray-300 rounded p-1" value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.value)} required
                                         />
                                     </div>
 
@@ -139,11 +143,12 @@ const AddTransactionFromCustomer = () => {
                                         <div className="flex my-2">
                                             <div className="form-check form-check-inline">
                                                 <input
-                                                    className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#CA9E00] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    className="form-check-input form-check-input appearance-none  rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#CA9E00] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                     type="radio"
                                                     value="CUCI + GOSOK"
                                                     checked={laundryType === "CUCI + GOSOK"}
                                                     onChange={(e) => setLaundryType(e.target.value)}
+                                                    required
                                                 />
                                                 <label
                                                     className="form-check-label inline-block text-gray-800"
@@ -154,11 +159,13 @@ const AddTransactionFromCustomer = () => {
                                             </div>
                                             <div className="form-check form-check-inline ml-5">
                                                 <input
-                                                    className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#685b2b] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#685b2b] focus:outline-none
+                                                    transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                     type="radio"
                                                     value="CUCI"
                                                     checked={laundryType === "CUCI"}
                                                     onChange={(e) => setLaundryType(e.target.value)}
+                                                    required
                                                 />
                                                 <label
                                                     className="form-check-label inline-block text-gray-800"
@@ -169,11 +176,12 @@ const AddTransactionFromCustomer = () => {
                                             </div>
                                             <div className="form-check form-check-inline mx-5">
                                                 <input
-                                                    className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#232020] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#232020] focus:outline-none transition duration-200
+                                                    mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                     type="radio"
                                                     value="GOSOK"
                                                     checked={laundryType === "GOSOK"}
-                                                    onChange={(e) => setLaundryType(e.target.value)}
+                                                    onChange={(e) => setLaundryType(e.target.value)} required
                                                 />
                                                 <label
                                                     className="form-check-label inline-block text-gray-800"
@@ -188,8 +196,8 @@ const AddTransactionFromCustomer = () => {
                                         <label htmlFor="" className="text-sm">
                                             Metode Pembayaran
                                         </label>
-                                        <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)}>
-                                            <option >Pilih Metode Pembayaran</option>
+                                        <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)} required>
+                                            <option>Pilih Metode Pembayaran</option>
                                             <option value="PENDING">Bayar dengan E-WALLET</option>
                                             <option value="BAYAR DITEMPAT" >Bayar ditempat</option>
                                         </select>
@@ -201,12 +209,13 @@ const AddTransactionFromCustomer = () => {
                                         <div className="flex my-2">
                                             <div className="form-check form-check-inline">
                                                 <input
-                                                    className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#CA9E00] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    className="form-check-input form-check-input
+                                                    appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#CA9E00] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                     type="radio"
                                                     name="inlineRadioOptions"
                                                     id="inlineRadio1"
                                                     value="option1"
-                                                    checked={inputService === true}
+                                                    checked={inputService === true} required
                                                     onChange={() => setInputService(true)}
                                                 />
                                                 <label
@@ -218,13 +227,15 @@ const AddTransactionFromCustomer = () => {
                                             </div>
                                             <div className="form-check form-check-inline mx-5">
                                                 <input
-                                                    className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#232020] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                    className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#232020] focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat
+                                                     bg-center bg-contain float-left mr-2 cursor-pointer"
                                                     type="radio"
                                                     name="inlineRadioOptions"
                                                     id="inlineRadio2"
                                                     value="option2"
                                                     checked={inputService === false}
                                                     onChange={() => setInputService(false)}
+                                                    required
                                                 />
                                                 <label
                                                     className="form-check-label inline-block text-gray-800"
