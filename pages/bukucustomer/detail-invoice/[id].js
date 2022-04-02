@@ -38,8 +38,9 @@ const DetailInvoiceCustomer = () => {
         <div className="flex flex-col px-6 items-center mx-auto justify-center md:w-3/5 w-full min-h-screen">
             {
                 transaction != [] ? (
-                    <div className="flex flex-col w-full items-stretch mt-10 bg-gray-50 p-4 rounded-md">
-                        <section>
+                    <div className="flex flex-col w-full items-stretch mt-10 bg-gray-50 p-4 rounded-md" data-aos="fade-down"
+                        data-aos-duration="800">
+                        <section >
                             <div className="md:flex">
                                 <div>
                                     <QRCode value={`https://localhost:3000/bukucustomer/detail-invoice/${transaction.transaction_unique}`} />
@@ -85,7 +86,7 @@ const DetailInvoiceCustomer = () => {
                                 </div>
                             </div>
                         </section>
-                        <section>
+                        <section >
                             <div className="md:flex">
                                 <div className="md:w-4/12 flex flex-col">
                                     <div className="form-group flex flex-col mt-4 mb-4">
@@ -157,7 +158,8 @@ const DetailInvoiceCustomer = () => {
                         </section>
                     </div>
                 ) : (
-                    <section className="flex flex-col justify-center items-center min-h-screen">
+                    <section className="flex flex-col justify-center items-center min-h-screen" data-aos="fade-down"
+                        data-aos-duration="800">
                         <img src="/assets/invoice.gif" className="my-4 rounded-full md:h-2/5 md:w-2/5" />
                         <h1 className="text-2xl font-semibold mt-2 text-[#232020]">Ooppss!</h1>
                         <p className="text-center w-80 text-gray-400 mt-2 capitalize">Maaf kami tidak dapat menemukan Invoice dengan kode <span className="font-semibold normal-case text-[#232020]">'{id}'</span> </p>
