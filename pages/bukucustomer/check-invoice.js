@@ -1,8 +1,16 @@
 import { useRouter } from "next/router";
+import { useState } from 'react'
 import AuthLayout from "../../components/layout/AuthLayout";
 
 const CheckInvoice = () => {
   const router = useRouter();
+  const [invoice, setInvoice] = useState('');
+
+  const redirectToDetailInvoice = (e) => {
+    e.preventDefault()
+    router.push(`bukucustomer/detail-invoice/${invoice}`)
+  }
+
   return (
     <AuthLayout>
       <section className="flex">
@@ -25,6 +33,7 @@ const CheckInvoice = () => {
             className="flex flex-col"
             data-aos="fade-right"
             data-aos-duration="800"
+            onSubmit={redirectToDetailInvoice}
           >
             <div className="form-group mt-4 flex flex-col">
               <label htmlFor="Email" className="text-sm">
@@ -32,6 +41,8 @@ const CheckInvoice = () => {
               </label>
               <input
                 type="text"
+                value={invoice}
+                onChange={(e) => setInvoice(e.target.value)}
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-3"
                 placeholder="Contoh : INVOICE#2728"
               />
