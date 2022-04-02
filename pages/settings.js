@@ -55,7 +55,7 @@ const index = () => {
         <section>
           <h1 className="text-2xl font-medium">Pengaturan akun</h1>
           <div className="md:flex block my-4 items-center">
-            <form className="w-full" data-aos="fade-up" data-aos-duration="800" onSubmit={userUpdate}>
+            <form className="w-full" onSubmit={userUpdate}>
               <div className="md:flex w-full">
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
                   <label htmlFor="Email" className="text-sm">

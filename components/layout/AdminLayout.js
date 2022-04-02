@@ -19,7 +19,7 @@ const AdminLayout = ({ children }) => {
           setSideBarShow={setSideBarShow}
         />
       </div>
-      <div className="flex mt-9 ml-0 md:w-4/5 w-full min-h-screen">
+      <div className="flex mt-9 ml-0 md:w-4/5 w-full min-h-screen" data-aos="fade-up" data-aos-duration="800">
         {children}
       </div>
     </div>
