@@ -44,7 +44,7 @@ const CheckInvoice = () => {
                 value={invoice}
                 onChange={(e) => setInvoice(e.target.value)}
                 className="border my-2 border-gray-300 rounded md:w-[18rem] p-3"
-                placeholder="Contoh : INVOICE#2728"
+                placeholder="Contoh : bukulaundry1283"
               />
             </div>
 
