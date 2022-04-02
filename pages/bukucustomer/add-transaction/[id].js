@@ -77,7 +77,6 @@ const AddTransactionFromCustomer = () => {
         })
 
         inputService ? router.push('/bukucustomer/waiting-courier') : router.push('/bukucustomer/waiting-item')
-
     }
 
     const deleteItem = (itemId) => {

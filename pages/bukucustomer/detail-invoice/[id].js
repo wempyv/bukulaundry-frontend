@@ -11,6 +11,7 @@ const DetailInvoiceCustomer = () => {
     const { id } = router.query
 
     const [transaction, setTransaction] = useState([])
+    const [laundry, setLaundry] = useState([])
     const [detailItem, setDetailItem] = useState();
 
     useEffect(() => {
@@ -22,21 +23,30 @@ const DetailInvoiceCustomer = () => {
     const getInvoice = async () => {
         const response = await axios.get(`http://localhost:5000/getinvoice/${id}`)
         setTransaction(response.data)
+        if (response.data != []) {
+            setDetailItem(JSON.parse(response.data.detail_item))
+        }
+        getLaundry(response.data.user_id)
+    }
+
+    const getLaundry = async (id) => {
+        const response = await axios.get(`http://localhost:5000/laundry/${id}`);
+        setLaundry(response.data)
     }
 
     return (
-        <div className="flex flex-col px-6 items-center mx-auto justify-center md:w-3/5 w-full ">
+        <div className="flex flex-col px-6 items-center mx-auto justify-center md:w-3/5 w-full min-h-screen">
             {
                 transaction != [] ? (
-                    <div className="flex flex-col w-full items-stretch mt-10">
+                    <div className="flex flex-col w-full items-stretch mt-10 bg-gray-50 p-4 rounded-md">
                         <section>
                             <div className="md:flex">
                                 <div>
-                                    <QRCode value={`https://localhost:3000/invoice/${transaction.transaction_unique}`} />
+                                    <QRCode value={`https://localhost:3000/bukucustomer/detail-invoice/${transaction.transaction_unique}`} />
                                 </div>
                                 <div className="md:w-4/12 flex flex-col md:mx-4">
-                                    <h1 className="text-2xl font-semibold text-[#232020] uppercase">
-                                        #{transaction.transaction_unique}
+                                    <h1 className="text-xl font-semibold text-[#232020] uppercase">
+                                        {transaction.transaction_unique}
                                     </h1>
                                     <div className="form-group flex flex-col mt-4 mb-4">
                                         <span className="text-sm text-[#B89F9F]">Nama Customer</span>
@@ -50,10 +60,10 @@ const DetailInvoiceCustomer = () => {
                                     </div>
                                     <div className="form-group flex flex-col mb-4">
                                         <span className="text-sm text-[#B89F9F]">
-                                            Tanggal Transaksi
+                                            Nama Laundry
                                         </span>
                                         <span className="text-[#232020] font-medium">
-                                            {moment(transaction.createdAt).format('LL')}
+                                            {laundry.name}
                                         </span>
                                     </div>
                                 </div>
@@ -100,6 +110,14 @@ const DetailInvoiceCustomer = () => {
                                             {transaction.type_laundry}
                                         </span>
                                     </div>
+                                </div>
+                                <div className="md:w-3/12 flex flex-col md:mx-4 ">
+                                    <div className="form-group flex flex-col mt-4 mb-4">
+                                        <span className="text-sm text-[#B89F9F]">Status on-demand</span>
+                                        <span className="text-[#232020] font-medium">
+                                            {transaction.status_on_demand}
+                                        </span>
+                                    </div>
                                     <div className="form-group flex flex-col mb-4">
                                         <span className="text-sm text-[#B89F9F]">
                                             Biaya tambahan
@@ -108,12 +126,12 @@ const DetailInvoiceCustomer = () => {
                                             Rp{transaction.additional_bill}
                                         </span>
                                     </div>
-                                </div>
-                                <div className="md:w-3/12 flex flex-col md:mx-4 ">
-                                    <div className="form-group flex flex-col mt-4 mb-4">
-                                        <span className="text-sm text-[#B89F9F]">Status on-demand</span>
+                                    <div className="form-group flex flex-col mb-4">
+                                        <span className="text-sm text-[#B89F9F]">
+                                            Tanggal Transaksi
+                                        </span>
                                         <span className="text-[#232020] font-medium">
-                                            {transaction.status_on_demand}
+                                            {moment(transaction.createdAt).format('LL')}
                                         </span>
                                     </div>
                                 </div>
@@ -139,7 +157,16 @@ const DetailInvoiceCustomer = () => {
                         </section>
                     </div>
                 ) : (
-                    <div>Invoice tidak ditemukan!</div>
+                    <section className="flex flex-col justify-center items-center min-h-screen">
+                        <img src="/assets/id-not-found.gif" className="my-4 rounded-full h-3/5 w-3/5" />
+                        <h1 className="text-2xl font-semibold mt-2 text-[#232020]">Ooppss!</h1>
+                        <p className="text-center w-80 text-gray-400 mt-2">Maaf kami tidak dapat menemukan Invoice dengan kode <span className="font-semibold text-[#232020]">'{id}'</span> </p>
+                        <button onClick={() => router.push('/bukucustomer/check-invoice')}
+                            className="rounded w-4/5 md:w-3/5 mx-auto hover:scale-105  h-[2.8rem] bg-[#232020] text-white text-sm mt-10 hover:bg-[#111010] hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex items-center justify-center"
+                        >
+                            Coba Lagi
+                        </button>
+                    </section>
                 )
             }
         </div>
