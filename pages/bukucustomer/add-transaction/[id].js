@@ -88,7 +88,7 @@ const AddTransactionFromCustomer = () => {
             data-aos-duration="800" >
             {
                 user != [] ? (
-                    <section className="md:w-2/5 w-full mt-5">
+                    <section className="md:w-2/5 w-full mt-5 px-3">
                         <h1 className="text-2xl font-medium">Buat Transaksi</h1>
                         <div className="my-5 text-sm">
                             <p>Transaksi kamu di <span className="font-medium">{user.name}</span></p>
