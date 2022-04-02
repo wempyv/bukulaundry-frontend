@@ -8,7 +8,7 @@ const CheckInvoice = () => {
 
   const redirectToDetailInvoice = (e) => {
     e.preventDefault()
-    router.push(`bukucustomer/detail-invoice/${invoice}`)
+    router.push(`/bukucustomer/detail-invoice/${invoice}`)
   }
 
   return (
