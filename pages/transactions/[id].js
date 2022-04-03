@@ -71,7 +71,7 @@ const DetailTransaction = () => {
         <section>
           <div className="md:flex">
             <div className="md:w-4/12">
-              <QRCode value={`https://localhost:3000/invoice/${transaction.transaction_unique}`} />
+              <QRCode value={`https://localhost:3000/bukucustomer/detail-invoice/${transaction.transaction_unique}`} />
             </div>
             <div className="md:w-4/12 flex flex-col md:mx-4">
               <h1 className="text-2xl font-semibold text-[#232020] uppercase">

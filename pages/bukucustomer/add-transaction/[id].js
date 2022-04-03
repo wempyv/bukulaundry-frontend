@@ -201,7 +201,7 @@ const AddTransactionFromCustomer = () => {
                                         </label>
                                         <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)} required>
                                             <option>Pilih Metode Pembayaran</option>
-                                            <option value="PENDING">Bayar dengan E-WALLET</option>
+                                            <option value="Bayar dengan E-Wallet">Bayar dengan E-WALLET</option>
                                             <option value="BAYAR DITEMPAT" >Bayar ditempat</option>
                                         </select>
                                     </div>
