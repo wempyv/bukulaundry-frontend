@@ -34,9 +34,11 @@ const index = () => {
       setPriceRubbing(user.priceRubbing),
       setPriceWash(user.priceWash),
       setServiceFee(user.serviceFee),
-      setLaundry(user.idLaundry)
-  }, [user.name, user.email, user.address, user.whatsapp_number, user.priceWashRubbing, user.priceRubbing, user.priceWash, user.serviceFee, user.idLaundry])
+      setLaundry(user.idLaundry),
+      user.paymentMethod != null ? setPayment(user.paymentMethod) : setPayment([])
+  }, [user.name, user.email, user.address, user.whatsapp_number, user.priceWashRubbing, user.priceRubbing, user.priceWash, user.serviceFee, user.idLaundry, user.paymentMethod])
 
+  console.log(payment)
 
   const userUpdate = async () => {
     await axios.patch(`http://localhost:5000/users/${user.id}`, {
@@ -48,7 +50,8 @@ const index = () => {
       price_wash_rubbing: priceWashRubbing,
       price_rubbing: priceRubbing,
       price_wash: priceWash,
-      service_fee: serviceFee
+      service_fee: serviceFee,
+      payment_method: payment
     });
 
     router.push("/settings");
@@ -180,7 +183,6 @@ const index = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg></a>
                   </div>
-
                   {
                     payment !== [] && payment.map((payment, index) => (
                       <div className="flex items-center bg-[#565CED] mt-2 p-3 rounded-md text-white text-sm" key={payment.id_payment}>

@@ -19,6 +19,7 @@ const UserProvider = ({ children }) => {
     const [serviceFee, setServiceFee] = useState('');
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
+    const [paymentMethod, setPaymentMethod] = useState([])
     const id = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
 
     const refreshToken = async () => {
@@ -28,6 +29,7 @@ const UserProvider = ({ children }) => {
             const decoded = jwt_decode(response.data.accessToken);
 
             localStorage.setItem('userId', decoded.userId);
+            setPaymentMethod(JSON.parse(decoded.payment_method));
             setName(decoded.name);
             setEmail(decoded.email);
             setAddress(decoded.address);
@@ -74,7 +76,8 @@ const UserProvider = ({ children }) => {
         priceWash,
         serviceFee,
         refreshToken,
-        idLaundry
+        idLaundry,
+        paymentMethod
     }
 
     return (

@@ -16,6 +16,7 @@ const Modal = ({ showModal, setShowModal, detailItem, setDetailItem }) => {
 
   const addItem = (e) => {
     e.preventDefault()
+
     const item = {
       "id": Math.floor(1 + (Math.random() * (1000 - 1))),
       "icon": chosenEmoji.emoji,
