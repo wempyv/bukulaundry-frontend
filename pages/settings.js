@@ -38,8 +38,6 @@ const index = () => {
       user.paymentMethod != null ? setPayment(user.paymentMethod) : setPayment([])
   }, [user.name, user.email, user.address, user.whatsapp_number, user.priceWashRubbing, user.priceRubbing, user.priceWash, user.serviceFee, user.idLaundry, user.paymentMethod])
 
-  console.log(payment)
-
   const userUpdate = async () => {
     await axios.patch(`http://localhost:5000/users/${user.id}`, {
       email: email,
