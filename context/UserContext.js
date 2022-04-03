@@ -36,7 +36,7 @@ const UserProvider = ({ children }) => {
             setPriceRubbing(decoded.price_rubbing);
             setPriceWash(decoded.price_wash);
             setServiceFee(decoded.service_fee);
-            setIdLaundry(decoded.id_laundry);
+            setIdLaundry(decoded.idLaundry);
             setExpire(decoded.exp);
         } catch (error) {
             if (error.response) {
