@@ -8,6 +8,7 @@ const userContext = createContext();
 const UserProvider = ({ children }) => {
 
     const router = useRouter();
+    const [idLaundry, setIdLaundry] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
@@ -19,10 +20,6 @@ const UserProvider = ({ children }) => {
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
     const id = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
-
-    // useEffect(() => {
-    //     refreshToken();
-    // }, [])
 
     const refreshToken = async () => {
         try {
@@ -39,7 +36,7 @@ const UserProvider = ({ children }) => {
             setPriceRubbing(decoded.price_rubbing);
             setPriceWash(decoded.price_wash);
             setServiceFee(decoded.service_fee);
-
+            setIdLaundry(decoded.id_laundry);
             setExpire(decoded.exp);
         } catch (error) {
             if (error.response) {
@@ -76,7 +73,8 @@ const UserProvider = ({ children }) => {
         priceRubbing,
         priceWash,
         serviceFee,
-        refreshToken
+        refreshToken,
+        idLaundry
     }
 
     return (
