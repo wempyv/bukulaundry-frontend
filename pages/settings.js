@@ -5,10 +5,12 @@ import axios from "axios";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { userContext } from "../context/UserContext";
 import toast, { Toaster } from 'react-hot-toast';
+import ModalAddPayment from "../components/component/ModalAddPayment";
 
 const index = () => {
   const router = useRouter();
   const user = useContext(userContext);
+  const [showModal, setShowModal] = useState(false);
 
   const [idLaundry, setLaundry] = useState('');
   const [name, setName] = useState('');
@@ -20,6 +22,7 @@ const index = () => {
   const [priceRubbing, setPriceRubbing] = useState('');
   const [priceWash, setPriceWash] = useState('');
   const [serviceFee, setServiceFee] = useState('');
+  const [payment, setPayment] = useState([]);
 
   useEffect(() => {
     user.refreshToken(),
@@ -51,6 +54,10 @@ const index = () => {
     router.push("/settings");
     user.refreshToken()
   }
+
+  const deletePayment = (id) => {
+    setPayment(payment.filter(({ id_payment }) => id_payment !== id));
+  };
 
   return (
     <AdminLayout>
@@ -165,6 +172,29 @@ const index = () => {
                   </button>
                 </div>
               </div>
+              <div className="md:flex w-full">
+                <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h1 className="text-xl font-medium">Metode Pembayaran</h1>
+                    <a className="cursor-pointer" onClick={() => setShowModal(true)}><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg></a>
+                  </div>
+
+                  {
+                    payment !== [] && payment.map((payment, index) => (
+                      <div className="flex items-center bg-[#565CED] mt-2 p-3 rounded-md text-white text-sm" key={payment.id_payment}>
+                        <button onClick={() => deletePayment(payment.id_payment)}><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg></button>
+                        <p className="ml-2">{payment.name_payment}({payment.name})</p>
+                        <span className="ml-3 mr-1">💴</span>
+                        <p>{payment.id_payment}</p>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
             </form>
           </div>
         </section>
@@ -173,6 +203,7 @@ const index = () => {
           reverseOrder={false}
         />
       </div>
+      <ModalAddPayment showModal={showModal} setShowModal={setShowModal} payment={payment} setPayment={setPayment} />
     </AdminLayout >
   );
 };
