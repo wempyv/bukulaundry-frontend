@@ -9,9 +9,10 @@ import ModalAddPayment from "../components/component/ModalAddPayment";
 
 const index = () => {
   const router = useRouter();
-  const user = useContext(userContext);
+  const userToken = useContext(userContext);
   const [showModal, setShowModal] = useState(false);
 
+  const [user, setUser] = useState([])
   const [idLaundry, setLaundry] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState("");
@@ -25,21 +26,29 @@ const index = () => {
   const [payment, setPayment] = useState([]);
 
   useEffect(() => {
-    user.refreshToken(),
-      setName(user.name),
-      setEmail(user.email),
-      setAddress(user.address),
-      setWhatsAppNumber(user.whatsapp_number),
-      setPriceWashRubbing(user.priceWashRubbing),
-      setPriceRubbing(user.priceRubbing),
-      setPriceWash(user.priceWash),
-      setServiceFee(user.serviceFee),
-      setLaundry(user.idLaundry),
-      user.paymentMethod != null ? setPayment(user.paymentMethod) : setPayment([])
-  }, [user.name, user.email, user.address, user.whatsapp_number, user.priceWashRubbing, user.priceRubbing, user.priceWash, user.serviceFee, user.idLaundry, user.paymentMethod])
+    userToken.refreshToken()
+    if (userToken.idLaundry != '') {
+      getUser()
+    }
+  }, [userToken.idLaundry])
+
+  const getUser = async () => {
+    const response = await axios.get(`http://localhost:5000/getlaundry/${userToken.idLaundry}`)
+
+    setName(response.data.name)
+    setEmail(response.data.email)
+    setAddress(response.data.address)
+    setWhatsAppNumber(response.data.whatsapp_number)
+    setPriceWashRubbing(response.data.price_wash_rubbing)
+    setPriceRubbing(response.data.price_rubbing)
+    setPriceWash(response.data.price_wash)
+    setServiceFee(response.data.service_fee)
+    setLaundry(response.data.id_laundry)
+    setPayment(JSON.parse(response.data.payment_method))
+  }
 
   const userUpdate = async () => {
-    await axios.patch(`http://localhost:5000/users/${user.id}`, {
+    await axios.patch(`http://localhost:5000/users/${userToken.id}`, {
       email: email,
       name: name,
       password: password,
