@@ -21,15 +21,19 @@ const AddTransaction = () => {
   const [inputService, setInputService] = useState(false);
   const [statusOnDemand, setStatusOnDemand] = useState('');
   const [detailItem, setDetailItem] = useState([]);
+  const [paymentMethod, setPaymentMethod] = useState([]);
 
   useEffect(() => {
     totalChange()
+    setPaymentMethod(user.paymentMethod)
   }, [])
 
   const totalChange = () => {
     const total = totalWeight * checkTypeLaundry() + checkService() + parseInt(additionalBill, 10)
     return total;
   }
+
+  console.log(paymentMethod)
 
   const checkService = () => {
     if (inputService === true) {
@@ -160,12 +164,17 @@ const AddTransaction = () => {
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:pr-4">
                   <label htmlFor="" className="text-sm">
-                    Status Pembayaran
+                    Metode Pembayaran
                   </label>
                   <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)}>
                     <option >Pilih Status Pembayaran</option>
                     <option value="PENDING">Pending</option>
-                    <option value="BAYAR DITEMPAT" >Bayar ditempat(Pending)</option>
+                    {
+                      paymentMethod.map((payment, index) => (
+                        <option value={`${payment.name_payment}(${payment.name} - ${payment.id_payment}`} >{payment.name_payment}({payment.name} - {payment.id_payment})</option>
+                      ))
+                    }
+                    <option value="BAYAR DITEMPAT" >Bayar ditempat</option>
                     <option value="SUDAH DIBAYAR" >Sudah dibayar(Sukses)</option>
                   </select>
                 </div>

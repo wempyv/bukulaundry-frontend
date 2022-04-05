@@ -71,9 +71,9 @@ const TableTransaction = ({ input }) => {
                               htmlFor=""
                               className="text-xs font-light text-[#C1B9B9] mb-1"
                             >
-                              Status
+                              Status Laundry
                             </label>
-                            <span className="text-sm">{transaction.status_payment}</span>
+                            <span className="text-sm">{transaction.status_laundry}</span>
                           </div>
                         </td>
                         <td className="py-4 px-3 md:px-0 text-gray-900 whitespace-nowrap dark:text-white">

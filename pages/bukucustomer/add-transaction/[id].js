@@ -8,6 +8,7 @@ const AddTransactionFromCustomer = () => {
     const { id } = router.query
 
     const [user, setUser] = useState([])
+    const [paymentMethod, setPaymentMethod] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [nameCustomer, setNameCustomer] = useState('');
     const [address, setAddress] = useState('');
@@ -31,6 +32,7 @@ const AddTransactionFromCustomer = () => {
     const getLaundry = async () => {
         const response = await axios.get(`http://localhost:5000/getlaundry/${id}`)
         setUser(response.data)
+        setPaymentMethod(JSON.parse(response.data.payment_method))
     }
 
     const totalChange = () => {
@@ -201,7 +203,9 @@ const AddTransactionFromCustomer = () => {
                                         </label>
                                         <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)} required>
                                             <option>Pilih Metode Pembayaran</option>
-                                            <option value="Bayar dengan E-Wallet">Bayar dengan E-WALLET</option>
+                                            {paymentMethod.map((payment, index) => (
+                                                <option value={`${payment.name_payment}(${payment.name} - ${payment.id_payment})`}>{payment.name_payment}({payment.name} - {payment.id_payment})</option>
+                                            ))}
                                             <option value="BAYAR DITEMPAT" >Bayar ditempat</option>
                                         </select>
                                     </div>

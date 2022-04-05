@@ -262,10 +262,10 @@ const EditTransaction = () => {
                   <label htmlFor="" className="text-sm">
                     Status Proses Laundry
                   </label>
-                  <select className="border my-2 border-gray-300 bg-white rounded p-1">
+                  <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setLaundryStatus(e.target.value)}>
                     <option value={laundryStatus} selected>{laundryStatus}</option>
-                    <option>Penerimaan Cucian(Belum Selesai)</option>
-                    <option>Sudah Selesai</option>
+                    <option value='Penerimaan Cucian'>Penerimaan Cucian(Belum Selesai)</option>
+                    <option value="Sudah Selesai">Sudah Selesai</option>
                   </select>
                 </div>
                 <div className="form-group mt-4 flex flex-col  w-full md:prWempy Virgana-4">
