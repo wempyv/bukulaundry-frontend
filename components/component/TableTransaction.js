@@ -46,7 +46,7 @@ const TableTransaction = ({ input }) => {
                         <td></td>
                         <td className="py-4 px-3 md:px-0  whitespace-nowrap dark:text-white ">
                           <div className="flex flex-col p-2 ">
-                            <span className="animate-bounce  text-gray-600">Transaksi Baru Perlu dikonfirmasi 💴</span>
+                            <span className="animate-bounce text-xl  text-yellow-500">Transaksi Baru Perlu dikonfirmasi 💲</span>
                           </div>
                         </td>
                         <td className="py-4 px-3 md:px-0 text-sm font-medium text-right  ">
