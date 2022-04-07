@@ -32,8 +32,11 @@ const AddTransactionFromCustomer = () => {
     const getLaundry = async () => {
         const response = await axios.get(`http://localhost:5000/getlaundry/${id}`)
         setUser(response.data)
-        setPaymentMethod(JSON.parse(response.data.payment_method))
+        if (response.data != []) {
+            setPaymentMethod(JSON.parse(response.data.payment_method))
+        }
     }
+
 
     const totalChange = () => {
         const total = totalWeight * checkTypeLaundry() + checkService() + parseInt(additionalBill, 10)
@@ -204,7 +207,7 @@ const AddTransactionFromCustomer = () => {
                                         <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)} required>
                                             <option>Pilih Metode Pembayaran</option>
                                             {paymentMethod.map((payment, index) => (
-                                                <option value={`${payment.name_payment}(${payment.name} - ${payment.id_payment})`}>{payment.name_payment}({payment.name} - {payment.id_payment})</option>
+                                                <option key={payment.id} value={`${payment.name_payment}(${payment.name} - ${payment.id_payment})`}>{payment.name_payment}({payment.name} - {payment.id_payment})</option>
                                             ))}
                                             <option value="BAYAR DITEMPAT" >Bayar ditempat</option>
                                         </select>
@@ -309,7 +312,7 @@ const AddTransactionFromCustomer = () => {
                     <section className="flex flex-col justify-center items-center min-h-screen">
                         <img src="/assets/id-not-found.gif" className="my-4 rounded-full h-3/5 w-3/5" />
                         <h1 className="text-2xl font-semibold mt-2 text-[#232020]">Ooppss!</h1>
-                        <p className="text-center w-80 text-gray-400 mt-2">Maaf Bukulaundri tidak dapat menemukan Laundry dengan ID <span className="font-semibold text-[#232020]">'{id}'</span> </p>
+                        <p className="text-center w-80 text-gray-400 mt-2">Maaf tidak dapat menemukan Laundry dengan ID <span className="font-semibold text-[#232020]">'{id}'</span> </p>
                         <button onClick={() => router.push('/bukucustomer')}
                             className="rounded w-4/5 md:w-3/5 mx-auto hover:scale-105  h-[2.8rem] bg-[#232020] text-white text-sm mt-10 hover:bg-[#111010] hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex items-center justify-center"
                         >

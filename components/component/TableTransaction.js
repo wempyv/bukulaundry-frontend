@@ -226,10 +226,8 @@ const TableTransaction = ({ input }) => {
                         </td>
                       </section>
                     </tr>)
-
                   ))
                 }
-
               </tbody>
             </table>
           </div>
