@@ -321,7 +321,6 @@ const AddTransactionFromCustomer = () => {
                     </section>
                 )
             }
-
             <ModalAddItem showModal={showModal} setShowModal={setShowModal} detailItem={detailItem} setDetailItem={setDetailItem} />
         </div>
     )
