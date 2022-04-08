@@ -21,10 +21,12 @@ const DetailInvoiceCustomer = () => {
         }
     }, [router.isReady])
 
-    const submit = () => {
+    const submit = async () => {
         const data = new FormData()
-        data.append('file', fileSelected)
+        data.append('image', fileSelected)
+        data.append('transaction_id', transaction.id)
 
+        await axios.post('http://localhost:5000/upload', data)
     }
 
     const getInvoice = async () => {
