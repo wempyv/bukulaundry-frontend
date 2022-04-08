@@ -162,7 +162,7 @@ const DetailInvoiceCustomer = () => {
                                     </div>
                                     <div className="flex flex-col">
                                         <input type="file" id="actual-payment" className="hidden" />
-                                        <label for="actual-payment"
+                                        <label htmlFor="actual-payment"
                                             className="rounded w-full md:w-[18rem] h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-8 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-300 ease-in-out ">
                                             Kirim Bukti Pembayaran
                                         </label>
