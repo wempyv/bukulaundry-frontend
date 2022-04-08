@@ -79,7 +79,7 @@ const DetailTransaction = () => {
                   #{transaction.transaction_unique}
                 </h1>
                 <a className="cursor-pointer" onClick={() => router.push(`/bukucustomer/detail-invoice/${transaction.transaction_unique}`)}>    <svg xmlns="http://www.w3.org/2000/svg" className="mx-4 text-blue-800 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLlinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg></a>
                 <a className="cursor-pointer" target="_blank" href={`https://web.whatsapp.com/send?phone=${transaction.whatsapp_number}&text=Halo%20kami%20dari%20bukulaundri%20transaksi%20kamu%20telah%20diterima.%20Kode%20invoice%20kamu%20*${transaction.transaction_unique}*%20atau%20bisa%20diakses%20di:%20http://localhost:3000/bukucustomer/detail-invoice/${transaction.transaction_unique}`}>

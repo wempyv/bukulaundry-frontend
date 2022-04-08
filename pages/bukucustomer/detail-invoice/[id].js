@@ -155,6 +155,27 @@ const DetailInvoiceCustomer = () => {
                                     </div>
                                 </div>
                             </div>
+                            {transaction.status_payment !== 'BAYAR DITEMPAT' && transaction.status_payment !== 'SUDAH DIBAYAR' && (
+                                <div className="flex md:flex-row flex-col items-center justify-between">
+                                    <div className="m-2">
+                                        <p className="text-xs">*Mohon untuk melakukan pembayaran sebesar <span className="font-bold">Rp.{transaction.total_bill} </span>ke {transaction.status_payment}</p>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <input type="file" id="actual-payment" className="hidden" />
+                                        <label for="actual-payment"
+                                            className="rounded w-full md:w-[18rem] h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-8 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-300 ease-in-out ">
+                                            Kirim Bukti Pembayaran
+                                        </label>
+                                    </div>
+                                </div>
+                            )
+                            }
+                            {transaction.status_payment === 'SUDAH DIBAYAR' && (
+                                <p className="text-xs">*Status Pembayaran anda <span className="font-bold">{transaction.status_payment}</span></p>
+                            )}
+                            {transaction.status_payment === 'BAYAR DITEMPAT' && (
+                                <p className="text-xs">*Mohon untuk melunasi pembayaran sebesar <span className="font-bold">Rp.{transaction.total_bill}</span> kepada pihak {laundry.name}</p>
+                            )}
                         </section>
                     </div>
                 ) : (

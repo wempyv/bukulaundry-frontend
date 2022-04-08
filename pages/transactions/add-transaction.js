@@ -168,7 +168,6 @@ const AddTransaction = () => {
                   </label>
                   <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)}>
                     <option >Pilih Status Pembayaran</option>
-                    <option value="PENDING">Pending</option>
                     {
                       paymentMethod.map((payment, index) => (
                         <option value={`${payment.name_payment}(${payment.name} - ${payment.id_payment}`} >{payment.name_payment}({payment.name} - {payment.id_payment})</option>
