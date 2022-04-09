@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { userContext } from '../../context/UserContext';
 import AdminLayout from "../../components/layout/AdminLayout";
+import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
 import moment from 'moment';
 import 'moment/locale/id'
@@ -27,13 +28,60 @@ const DetailTransaction = () => {
     const response = await axios.get(`http://localhost:5000/transaction/${id}`);
     setTransaction(response.data);
     setDetailItem(JSON.parse(response.data.detail_item))
-    getProodOfPayment(response.data.id)
+    getProodOfPayment(response.data.id, response.data.status_payment)
   }
 
-  const getProodOfPayment = async (id) => {
+
+
+  const getProodOfPayment = async (id, statusPayment) => {
     const response = await axios.get(`http://localhost:5000/upload/${id}`)
     setFile(response.data)
+
+    if (statusPayment !== 'SUDAH DIBAYAR' && response.data !== '') {
+      showToast()
+    }
+
   }
+
+
+
+  const showToast = () => {
+    toast.custom((t) => (
+      <div
+        className={`${t.visible ? 'animate-enter' : 'animate-leave'
+          } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-start">
+            <div className="flex-shrink-0 pt-0.5">
+              <img
+                className="h-10 w-10 rounded-full"
+                src="/assets/admin.png"
+                alt=""
+              />
+            </div>
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-gray-900">
+                Admin Bukulaundri
+              </p>
+              <p className="mt-1 text-sm text-gray-500">
+                Halo, Customer telah mengirimkan bukti pembayaran, mohon untuk diproses 😉
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex border-l border-gray-200">
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    ))
+  }
+
 
   return (
     <AdminLayout>
@@ -205,6 +253,10 @@ const DetailTransaction = () => {
           }
         </section>
       </div>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
     </AdminLayout>
   );
 };

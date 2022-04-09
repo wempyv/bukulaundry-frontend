@@ -187,7 +187,6 @@ const EditTransaction = () => {
                   </label>
                   <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)}>
                     <option value={statusPayment} selected>{statusPayment}</option>
-                    <option value="PENDING">Pending</option>
                     <option value="BAYAR DITEMPAT" >Bayar ditempat(Pending)</option>
                     <option value="SUDAH DIBAYAR" >Sudah dibayar(Sukses)</option>
                   </select>

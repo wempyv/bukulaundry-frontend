@@ -144,9 +144,9 @@ const TableTransaction = ({ input }) => {
                               htmlFor=""
                               className="text-xs font-light text-[#C1B9B9] mb-1"
                             >
-                              Status Laundry
+                              ID Transaksi
                             </label>
-                            <span className="text-sm">{transaction.status_laundry}</span>
+                            <span className="text-sm uppercase">{transaction.transaction_unique}</span>
                           </div>
                         </td>
                         <td className="py-4 px-3 md:px-0 text-gray-900 whitespace-nowrap dark:text-white">
