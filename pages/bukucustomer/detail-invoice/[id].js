@@ -14,6 +14,7 @@ const DetailInvoiceCustomer = () => {
     const [laundry, setLaundry] = useState([])
     const [detailItem, setDetailItem] = useState();
     const [fileSelected, setFileSelected] = useState('');
+    const [file, setFile] = useState('');
 
     useEffect(() => {
         if (router.isReady) {
@@ -27,6 +28,7 @@ const DetailInvoiceCustomer = () => {
         data.append('transaction_id', transaction.id)
 
         await axios.post('http://localhost:5000/upload', data)
+        router.push('success')
     }
 
     const getInvoice = async () => {
@@ -36,6 +38,7 @@ const DetailInvoiceCustomer = () => {
             setDetailItem(JSON.parse(response.data.detail_item))
         }
         getLaundry(response.data.user_id)
+        getProodOfPayment(response.data.id)
     }
 
     const getLaundry = async (id) => {
@@ -43,6 +46,10 @@ const DetailInvoiceCustomer = () => {
         setLaundry(response.data)
     }
 
+    const getProodOfPayment = async (id) => {
+        const response = await axios.get(`http://localhost:5000/upload/${id}`)
+        setFile(response.data)
+    }
 
     return (
         <div className="flex flex-col px-6 items-center mx-auto justify-center md:w-3/5 w-full min-h-screen" data-aos="fade-down"
@@ -168,22 +175,26 @@ const DetailInvoiceCustomer = () => {
                             {transaction.status_payment !== 'BAYAR DITEMPAT' && transaction.status_payment !== 'SUDAH DIBAYAR' && (
                                 <div className="flex md:flex-row flex-col items-center justify-between">
                                     <div className="m-2">
-                                        <p className="text-xs">*Mohon untuk melakukan pembayaran sebesar <span className="font-bold">Rp.{transaction.total_bill} </span>ke {transaction.status_payment}</p>
+                                        <p className="text-xs">*{file === '' ? 'Mohon untuk' : 'Kamu telah'} melakukan pembayaran sebesar <span className="font-bold">Rp.{transaction.total_bill} </span>ke {transaction.status_payment}</p>
                                     </div>
-                                    <div className="flex flex-col w-full">
-                                        <input type="file" id="actual-payment" className="hidden" onChange={(e) => setFileSelected(e.target.files[0])} />
-                                        <p className={`${fileSelected === '' ? 'hidden' : 'text-sm text-right mt-7 flex items-center justify-end'}`}>{fileSelected.name}<button onClick={() => setFileSelected('')} className="mx-2"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                        </svg></button></p>
-                                        <label htmlFor="actual-payment"
-                                            className={` ${fileSelected !== '' ? 'hidden' : 'rounded w-full  h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-2 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-300 ease-in-out '} `}>
-                                            Upload Bukti Pembayaran
-                                        </label>
-                                        <button onClick={submit}
-                                            className={` ${fileSelected === '' ? 'hidden' : 'rounded w-full  h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-2 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-300 ease-in-out '} `}>
-                                            Kirim Bukti Pembayaran
-                                        </button>
-                                    </div>
+                                    {
+                                        file === '' ? (<div className="flex flex-col w-full">
+                                            <input type="file" id="actual-payment" className="hidden" onChange={(e) => setFileSelected(e.target.files[0])} />
+                                            <p className={`${fileSelected === '' ? 'hidden' : 'text-sm text-right mt-7 flex items-center justify-end'}`}>{fileSelected.name}<button onClick={() => setFileSelected('')} className="mx-2"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg></button></p>
+                                            <label htmlFor="actual-payment"
+                                                className={` ${fileSelected !== '' ? 'hidden' : 'rounded w-full  h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-2 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-300 ease-in-out '} `}>
+                                                Upload Bukti Pembayaran
+                                            </label>
+                                            <button onClick={submit}
+                                                className={` ${fileSelected === '' ? 'hidden' : 'rounded w-full  h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-2 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-300 ease-in-out '} `}>
+                                                Kirim Bukti Pembayaran
+                                            </button>
+                                        </div>) : (
+                                            <p className="text-xs w-full text-right">💡Bukti pembayaran kamu telah terkirim</p>
+                                        )
+                                    }
                                 </div>
                             )
                             }
