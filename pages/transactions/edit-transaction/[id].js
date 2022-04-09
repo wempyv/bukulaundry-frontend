@@ -24,11 +24,13 @@ const EditTransaction = () => {
   const [inputService, setInputService] = useState(false);
   const [statusOnDemand, setStatusOnDemand] = useState('');
   const [detailItem, setDetailItem] = useState([]);
+  const [paymentMethod, setPaymentMethod] = useState([]);
 
 
   useEffect(() => {
     user.refreshToken();
     totalChange()
+    setPaymentMethod(user.paymentMethod)
     if (router.isReady) {
       getTransactionById()
     }
@@ -187,6 +189,11 @@ const EditTransaction = () => {
                   </label>
                   <select className="border my-2 border-gray-300 bg-white rounded p-1" onChange={(e) => setStatusPayment(e.target.value)}>
                     <option value={statusPayment} selected>{statusPayment}</option>
+                    {
+                      paymentMethod.map((payment, index) => (
+                        <option value={`${payment.name_payment}(${payment.name} - ${payment.id_payment}`} >{payment.name_payment}({payment.name} - {payment.id_payment})</option>
+                      ))
+                    }
                     <option value="BAYAR DITEMPAT" >Bayar ditempat(Pending)</option>
                     <option value="SUDAH DIBAYAR" >Sudah dibayar(Sukses)</option>
                   </select>
