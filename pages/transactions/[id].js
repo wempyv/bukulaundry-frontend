@@ -13,6 +13,7 @@ const DetailTransaction = () => {
   const user = useContext(userContext)
   const [transaction, setTransaction] = useState([]);
   const [detailItem, setDetailItem] = useState();
+  const [file, setFile] = useState('');
   const { id } = router.query
 
   useEffect(() => {
@@ -26,8 +27,13 @@ const DetailTransaction = () => {
     const response = await axios.get(`http://localhost:5000/transaction/${id}`);
     setTransaction(response.data);
     setDetailItem(JSON.parse(response.data.detail_item))
+    getProodOfPayment(response.data.id)
   }
 
+  const getProodOfPayment = async (id) => {
+    const response = await axios.get(`http://localhost:5000/upload/${id}`)
+    setFile(response.data)
+  }
 
   return (
     <AdminLayout>
@@ -150,20 +156,21 @@ const DetailTransaction = () => {
                   {transaction.type_laundry}
                 </span>
               </div>
-              <div className="form-group flex flex-col mb-4">
-                <span className="text-sm text-[#B89F9F]">
-                  Biaya tambahan
-                </span>
-                <span className="text-[#232020] font-medium">
-                  Rp{transaction.additional_bill}
-                </span>
-              </div>
+
             </div>
             <div className="md:w-3/12 flex flex-col md:mx-4 ">
               <div className="form-group flex flex-col mt-4 mb-4">
                 <span className="text-sm text-[#B89F9F]">Status on-demand</span>
                 <span className="text-[#232020] font-medium">
                   {transaction.status_on_demand}
+                </span>
+              </div>
+              <div className="form-group flex flex-col mb-4">
+                <span className="text-sm text-[#B89F9F]">
+                  Biaya tambahan
+                </span>
+                <span className="text-[#232020] font-medium">
+                  Rp{transaction.additional_bill}
                 </span>
               </div>
             </div>
@@ -186,6 +193,16 @@ const DetailTransaction = () => {
               </div>
             </div>
           </div>
+        </section>
+        <section className="md:flex md:flex-col">
+          {
+            file === '' ? (<div></div>) : (
+              <>
+                <h1 className="mt-5 text-xl font-medium">💡Bukti Pembayaran </h1>
+                <img src={`http://localhost:5000/${file.image}`} className="mt-5 w-72" />
+              </>
+            )
+          }
         </section>
       </div>
     </AdminLayout>
