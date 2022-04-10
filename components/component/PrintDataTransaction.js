@@ -9,7 +9,6 @@ export default function PrintToComponent({ transaction }) {
     const user = useContext(userContext);
     let componentRef = useRef();
 
-
     const transactions = transaction.filter((i) => {
         return i.status_payment.match('SUDAH DIBAYAR')
     })
