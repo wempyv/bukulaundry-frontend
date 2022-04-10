@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { userContext } from "../../context/UserContext";
 import { useRouter } from "next/router";
 import axios from 'axios';
@@ -6,10 +6,9 @@ import moment from 'moment';
 import 'moment/locale/id'
 moment.locale('id');
 
-const TableTransaction = ({ input }) => {
+const TableTransaction = ({ input, transaction, getTransaction }) => {
   const router = useRouter();
   const user = useContext(userContext);
-  const [transaction, setTransaction] = useState([]);
 
   if (input.length > 0) {
     transaction = transaction.filter((i) => {
@@ -19,13 +18,8 @@ const TableTransaction = ({ input }) => {
 
   useEffect(() => {
     user.refreshToken();
-    getTransaction();
   }, [])
 
-  const getTransaction = async () => {
-    const response = await axios.get(`http://localhost:5000/transactions/${user.id}`)
-    setTransaction(response.data);
-  }
 
   const deleteTransaction = async (id) => {
     await axios.delete(`http://localhost:5000/transaction/${id}`);

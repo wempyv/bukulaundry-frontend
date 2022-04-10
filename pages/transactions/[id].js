@@ -31,8 +31,6 @@ const DetailTransaction = () => {
     getProodOfPayment(response.data.id, response.data.status_payment)
   }
 
-
-
   const getProodOfPayment = async (id, statusPayment) => {
     const response = await axios.get(`http://localhost:5000/upload/${id}`)
     setFile(response.data)
@@ -42,8 +40,6 @@ const DetailTransaction = () => {
     }
 
   }
-
-
 
   const showToast = () => {
     toast.custom((t) => (

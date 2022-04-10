@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { userContext } from "../../context/UserContext";
 import { useRouter } from "next/router";
+import axios from 'axios';
 import TableTransaction from "../../components/component/TableTransaction";
 import AdminLayout from "../../components/layout/AdminLayout";
+import PrintDataTransaction from '../../components/component/PrintDataTransaction'
 
 const Index = () => {
+  const user = useContext(userContext);
   const router = useRouter();
   const [input, setInput] = useState('');
+  const [transaction, setTransaction] = useState([]);
+
+  useEffect(() => {
+    user.refreshToken();
+    getTransaction();
+  }, [])
+
+  const getTransaction = async () => {
+    const response = await axios.get(`http://localhost:5000/transactions/${user.id}`)
+    setTransaction(response.data);
+  }
+
 
   return (
     <AdminLayout>
@@ -26,9 +42,10 @@ const Index = () => {
               className="h-10 border rounded-md w-full pl-2"
               placeholder="Cari data transaksi" value={input} onChange={(e) => setInput(e.target.value)}
             />
+            <PrintDataTransaction transaction={transaction} />
           </div>
           <div className="md:flex block items-center">
-            <TableTransaction input={input} />
+            <TableTransaction input={input} transaction={transaction} getTransaction={getTransaction} />
           </div>
         </section>
       </div>
