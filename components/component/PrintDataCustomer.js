@@ -1,10 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import ReactToPrint from 'react-to-print';
+import { userContext } from "../../context/UserContext";
 import moment from 'moment';
 import 'moment/locale/id'
 moment.locale('id');
 
 export default function PrintToComponent({ customers }) {
+    const user = useContext(userContext);
     let componentRef = useRef();
     return (
         <>
@@ -18,7 +20,7 @@ export default function PrintToComponent({ customers }) {
                     content={() => componentRef}
                 />
                 <div className='hidden'>
-                    <ComponentToPrint customers={customers} ref={(el) => (componentRef = el)} />
+                    <ComponentToPrint customers={customers} user={user} ref={(el) => (componentRef = el)} />
                 </div>
             </div>
         </>
@@ -28,57 +30,56 @@ export default function PrintToComponent({ customers }) {
 class ComponentToPrint extends React.Component {
     render() {
         return (
-            <div class="flex flex-col p-4">
+            <div className="flex flex-col p-4">
                 <section>
                     <div className='flex justify-between'>
                         <div>
-                            <img src="assets/logo.svg" className='h-10' />
+                            <img src="assets/logo.svg" className='h-14' />
                         </div>
-                        <div>
-                            <p classname="text-center">Daftar Customer</p>
-                        </div>
-                        <div>
-
+                        <div className='text-right text-sm '>
+                            <p>Customer {this.props.user.name}</p>
+                            <p>{this.props.user.address}</p>
+                            <p>{this.props.user.whatsapp_number}</p>
                         </div>
                     </div>
                 </section>
-                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-4">
-                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="overflow-hidden">
-                            <table class="min-w-full">
-                                <thead class="border-b bg-gray-600">
+                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-4">
+                    <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div className="overflow-hidden">
+                            <table className="min-w-full">
+                                <thead className="border-b bg-gray-600">
                                     <tr>
-                                        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                                        <th scope="col" className="text-sm font-medium text-white px-6 py-4 text-left">
                                             No
                                         </th>
-                                        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                                        <th scope="col" className="text-sm font-medium text-white px-6 py-4 text-left">
                                             Nama Customer
                                         </th>
-                                        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                                        <th scope="col" className="text-sm font-medium text-white px-6 py-4 text-left">
                                             Nomor Whatsapp
                                         </th>
-                                        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                                        <th scope="col" className="text-sm font-medium text-white px-6 py-4 text-left">
                                             Tanggal Daftar
                                         </th>
-                                        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                                        <th scope="col" className="text-sm font-medium text-white px-6 py-4 text-left">
                                             Alamat Customer
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {this.props.customers.map((customer, index) => (
-                                        <tr class="border-b" key={customer.id}>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <tr className="border-b" key={customer.id}>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                 {customer.name_customer}
                                             </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                 {customer.whatsapp_number}
                                             </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                 {moment(customer.createdAt).format('LL')}
                                             </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 ">
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 ">
                                                 {customer.address}
                                             </td>
                                         </tr>

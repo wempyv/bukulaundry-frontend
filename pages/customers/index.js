@@ -52,7 +52,7 @@ const Index = () => {
               className="h-10 border rounded-md w-full pl-2"
               placeholder="Cari data customer" value={input} onChange={handleChange}
             />
-            <PrintDataCustomer customers={customers} />
+            <PrintDataCustomer customers={customers} user={user} />
           </div>
           <div className="md:flex w-full my-4 items-center">
             <TableCustomer input={input} getCustomer={getCustomer} customers={customers} setCustomer={setCustomer} />
