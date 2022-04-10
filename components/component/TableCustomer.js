@@ -7,16 +7,14 @@ import moment from 'moment';
 import 'moment/locale/id'
 moment.locale('id');
 
-const TableCustomer = ({ input }) => {
+const TableCustomer = ({ input, getCustomer, customers, setCustomer }) => {
   const user = useContext(userContext);
   const [showModal, setShowModal] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false)
-  const [customers, setCustomer] = useState([]);
   const [customerDetail, setCustomerDetail] = useState([]);
 
   useEffect(() => {
     user.refreshToken()
-    getCustomer();
   }, []);
 
   if (input.length > 0) {
@@ -25,10 +23,6 @@ const TableCustomer = ({ input }) => {
     })
   }
 
-  const getCustomer = async () => {
-    const response = await axios.get(`http://localhost:5000/customers/${user.id}`);
-    setCustomer(response.data);
-  }
 
   const detailCustomer = async (id) => {
     const response = await axios.get(`http://localhost:5000/customer/${id}`);
