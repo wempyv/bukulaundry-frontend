@@ -17,7 +17,7 @@ const TableTransaction = ({ input, transaction, getTransaction }) => {
   }
 
   useEffect(() => {
-    user.refreshToken();
+    user.refreshToken()
   }, [])
 
 
@@ -25,6 +25,7 @@ const TableTransaction = ({ input, transaction, getTransaction }) => {
     await axios.delete(`http://localhost:5000/transaction/${id}`);
     getTransaction();
   }
+
 
   return (
     <div className="flex flex-col w-full ">
@@ -118,7 +119,8 @@ const TableTransaction = ({ input, transaction, getTransaction }) => {
                             >
                               Nama Customer
                             </label>
-                            <span className="text-sm">{transaction.name_customer}</span>
+                            <span className="text-sm">{transaction.name_customer}
+                            </span>
                           </div>
                         </td>
                         <td className="py-4 px-3 md:px-0 text-gray-900 whitespace-nowrap dark:text-white">
