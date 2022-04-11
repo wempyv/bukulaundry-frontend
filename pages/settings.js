@@ -191,7 +191,7 @@ const index = () => {
                     </svg></a>
                   </div>
                   {
-                    payment !== [] && payment.map((payment, index) => (
+                    payment.map((payment, index) => (
                       <div className="flex items-center bg-[#565CED] mt-2 p-3 rounded-md text-white text-sm" key={payment.id_payment}>
                         <button onClick={() => deletePayment(payment.id_payment)}><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
