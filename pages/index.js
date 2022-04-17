@@ -5,23 +5,30 @@ CardRecentTransaction;
 import WaitTransaction from "../components/component/WaitTransaction";
 import { userContext } from '../context/UserContext';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 const index = () => {
   const user = useContext(userContext);
   const [transaction, setTransaction] = useState([])
 
+
   useEffect(() => {
     user.refreshToken()
     getTransaction(user.id)
+
   }, [user.id])
 
   const getTransaction = async (id) => {
     const response = await axios.get(`http://localhost:5000/transactions/${id}`)
     setTransaction(response.data);
+    if (user.priceWash === '') {
+      showToast()
+    }
   }
 
   const transactionSuccess = transaction.filter((i) => {
     return i.status_payment.match('SUDAH DIBAYAR')
+
   })
 
   const transactionPending = transaction.filter((i) => {
@@ -32,6 +39,43 @@ const index = () => {
     return prev + +current.total_bill
   }, 0);
 
+
+  const showToast = () => {
+    toast.custom((t) => (
+      <div
+        className={`${t.visible ? 'animate-enter' : 'animate-leave'
+          } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-start">
+            <div className="flex-shrink-0 pt-0.5">
+              <img
+                className="h-10 w-10 rounded-full"
+                src="/assets/admin.png"
+                alt=""
+              />
+            </div>
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-gray-900">
+                Admin Bukulaundri
+              </p>
+              <p className="mt-1 text-sm text-gray-500">
+                Halo Pengguna Baru, Mohon untuk mengisi field yang kosong di halaman pengaturan
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex border-l border-gray-200">
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    ))
+  }
 
   return (
     <AdminLayout>
@@ -127,6 +171,10 @@ const index = () => {
           </div>
         </section>
       </div>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
     </AdminLayout>
   );
 };
