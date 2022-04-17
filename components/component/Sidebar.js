@@ -16,7 +16,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
   }
   return (
     <div
-      className={`z-10 fixed md:static w-56 md:w-full top-0 h-full md:h-full m-0 flex-col bg-[#F6F8FA] text-white shadow flex duration-300 ease-in-out ${isSidebarShow ? "left-0" : "-left-96"
+      className={`z-10 fixed md:static w-56 md:w-full top-0 h-full md:h-full m-0 flex-col bg-[#F6F8FA] text-white shadow flex duration-100 ease-in-out ${isSidebarShow ? "left-0" : "-left-96"
         }`}
     >
       <section className="flex justify-center my-8">
@@ -25,7 +25,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
       <section className=" flex flex-col mx-auto my-16">
         <li
           onClick={() => router.push("/")}
-          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${router.asPath == "/" ? "text-[#232020]" : " text-gray-300"
+          className={`flex cursor-pointer items-center hover:scale-105 duration-100 ease-in-out my-4  ${router.asPath == "/" ? "text-[#232020]" : " text-gray-300"
             }`}
         >
           <svg
@@ -52,7 +52,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
         </li>
         <li
           onClick={() => router.push("/transactions")}
-          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${router.asPath == "/transactions"
+          className={`flex cursor-pointer items-center hover:scale-105 duration-100 ease-in-out my-4  ${router.asPath == "/transactions"
             ? "text-[#232020]"
             : "text-gray-300"
             }`}
@@ -75,7 +75,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
         </li>
         <li
           onClick={() => router.push("/customers")}
-          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${router.asPath == "/customers" ? "text-[#232020]" : "text-gray-300"
+          className={`flex cursor-pointer items-center hover:scale-105 duration-100 ease-in-out my-4  ${router.asPath == "/customers" ? "text-[#232020]" : "text-gray-300"
             }`}
         >
           <svg
@@ -96,7 +96,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
         </li>
         <li
           onClick={() => router.push("/settings")}
-          className={`flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4  ${router.asPath == "/settings" ? "text-[#232020]" : "text-gray-300"
+          className={`flex cursor-pointer items-center hover:scale-105 duration-100 ease-in-out my-4  ${router.asPath == "/settings" ? "text-[#232020]" : "text-gray-300"
             }`}
         >
           <svg
@@ -121,7 +121,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
           </svg>
           <span className="mx-2">Pengaturan</span>
         </li>
-        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out my-4 text-gray-300" onClick={Logout}>
+        <li className="flex cursor-pointer items-center hover:scale-105 duration-100 ease-in-out my-4 text-gray-300" onClick={Logout}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -138,7 +138,7 @@ const Sidebar = ({ setSideBarShow, isSidebarShow }) => {
           </svg>
           <span className="mx-2">Logout</span>
         </li>
-        <li className="flex cursor-pointer items-center hover:scale-105 duration-300 ease-in-out mt-12 animate-bounce text-blue-500 md:hidden ">
+        <li className="flex cursor-pointer items-center hover:scale-105 duration-100 ease-in-out mt-12 animate-bounce text-blue-500 md:hidden ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 "

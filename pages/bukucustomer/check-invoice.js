@@ -60,7 +60,7 @@ const CheckInvoice = () => {
             text-sm
             my-8
             hover:scale-105 hover:shadow-xl
-            duration-300
+            duration-100
             ease-in-out
           "
             >
@@ -73,7 +73,7 @@ const CheckInvoice = () => {
                 className="
               text-blue-600
               hover:text-blue-900
-              duration-300
+              duration-100
               ease-in-out
               md:pb-24
               cursor-pointer

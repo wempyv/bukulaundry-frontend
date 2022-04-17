@@ -101,7 +101,7 @@ const TableCustomer = ({ input, getCustomer, customers, setCustomer }) => {
                           <a className="cursor-pointer" onClick={() => getCustomerById(customer.id)}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-gray-400 hover:text-gray-700 duration-300 ease-in-out"
+                              className="h-5 w-5 text-gray-400 hover:text-gray-700 duration-100 ease-in-out"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -119,7 +119,7 @@ const TableCustomer = ({ input, getCustomer, customers, setCustomer }) => {
                           <a className="cursor-pointer" onClick={() => detailCustomer(customer.id)}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-gray-400 hover:text-gray-700 duration-300 ease-in-out"
+                              className="h-5 w-5 text-gray-400 hover:text-gray-700 duration-100 ease-in-out"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -143,7 +143,7 @@ const TableCustomer = ({ input, getCustomer, customers, setCustomer }) => {
                           <a className="cursor-pointer" onClick={() => deleteCustomer(customer.id)}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-gray-400 hover:text-gray-700 duration-300 ease-in-out"
+                              className="h-5 w-5 text-gray-400 hover:text-gray-700 duration-100 ease-in-out"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"

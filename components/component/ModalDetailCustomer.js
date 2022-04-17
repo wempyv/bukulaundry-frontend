@@ -81,7 +81,7 @@ const ModalCustomer = ({ showModal, setShowModal, customerDetail, setCustomerDet
                 <p className="font-medium text-gray-900">{customerDetail.address}</p>
               </div>
               <button
-                className="w-full text-white bg-[#232020] hover:scale-105 duration-300 ease-out focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " onClick={() => router.push(`add-customer-transaction/${customerDetail.id}`)}
+                className="w-full text-white bg-[#232020] hover:scale-105 duration-100 ease-out focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " onClick={() => router.push(`add-customer-transaction/${customerDetail.id}`)}
               >
                 Buat Transaksi
               </button>

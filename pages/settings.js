@@ -176,7 +176,7 @@ const index = () => {
                 <div className="form-group mt-4 flex flex-col  w-full md:w-1/2 md:pr-4">
                   <button
                     type="submit"
-                    className="rounded w-full] h-[2.4rem] bg-gray-900 text-white uppercase text-sm my-7 hover:scale-105 hover:shadow-xl duration-300 ease-in-out"
+                    className="rounded w-full] h-[2.4rem] bg-gray-900 text-white uppercase text-sm my-7 hover:scale-105 hover:shadow-xl duration-100 ease-in-out"
                   >
                     Simpan
                   </button>

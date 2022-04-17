@@ -88,8 +88,8 @@ const Login = () => {
             uppercase
             text-sm
             my-8
-            hover:scale-105 hover:shadow-xl
-            duration-300
+            hover:scale-105
+            duration-100
             ease-in-out
           "
             >
@@ -103,7 +103,7 @@ const Login = () => {
               Belum punya akun ?
               <a
                 onClick={() => router.push("/auth/register")}
-                className="text-blue-600 hover:text-blue-900 duration-300 ease-in-out cursor-pointer"
+                className="text-blue-600 hover:text-blue-900 duration-100 ease-in-out cursor-pointer"
               >
                 Buat akun
               </a>

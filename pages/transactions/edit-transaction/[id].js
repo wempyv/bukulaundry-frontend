@@ -406,7 +406,7 @@ const EditTransaction = () => {
                 </div>
                 <button
                   type="submit"
-                  className="rounded w-full h-[2.8rem] bg-[#232020] text-white text-sm mt-2 hover:bg-[#111010] hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex items-center justify-center"
+                  className="rounded w-full h-[2.8rem] bg-[#232020] text-white text-sm mt-2 hover:bg-[#111010] hover:shadow-xl duration-100 ease-in-out font-medium ml-auto flex items-center justify-center"
                 >
                   Simpan Transaksi
                 </button>

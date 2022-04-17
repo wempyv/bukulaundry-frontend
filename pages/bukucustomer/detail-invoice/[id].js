@@ -184,11 +184,11 @@ const DetailInvoiceCustomer = () => {
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                             </svg></button></p>
                                             <label htmlFor="actual-payment"
-                                                className={` ${fileSelected !== '' ? 'hidden' : 'rounded w-full  h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-2 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-300 ease-in-out '} `}>
+                                                className={` ${fileSelected !== '' ? 'hidden' : 'rounded w-full  h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-2 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-100 ease-in-out '} `}>
                                                 Upload Bukti Pembayaran
                                             </label>
                                             <button onClick={submit}
-                                                className={` ${fileSelected === '' ? 'hidden' : 'rounded w-full  h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-2 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-300 ease-in-out '} `}>
+                                                className={` ${fileSelected === '' ? 'hidden' : 'rounded w-full  h-[2.8rem] bg-gray-900 text-white uppercase text-sm my-2 hover:scale-105 flex items-center justify-center  cursor-pointer hover:shadow-xl duration-100 ease-in-out '} `}>
                                                 Kirim Bukti Pembayaran
                                             </button>
                                         </div>) : (
@@ -212,7 +212,7 @@ const DetailInvoiceCustomer = () => {
                         <h1 className="text-2xl font-semibold mt-2 text-[#232020]">Ooppss!</h1>
                         <p className="text-center w-80 text-gray-400 mt-2 capitalize">Maaf kami tidak dapat menemukan Invoice dengan kode <span className="font-semibold normal-case text-[#232020]">'{id}'</span> </p>
                         <button onClick={() => router.push('/bukucustomer/check-invoice')}
-                            className="rounded w-4/5 md:w-3/5 mx-auto hover:scale-105  h-[2.8rem] bg-[#232020] text-white text-sm mt-10 hover:bg-[#111010] hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex items-center justify-center"
+                            className="rounded w-4/5 md:w-3/5 mx-auto hover:scale-105  h-[2.8rem] bg-[#232020] text-white text-sm mt-10 hover:bg-[#111010] hover:shadow-xl duration-100 ease-in-out font-medium ml-auto flex items-center justify-center"
                         >
                             Coba Lagi
                         </button>

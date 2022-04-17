@@ -57,7 +57,7 @@ const FindLaundry = () => {
             text-sm
             my-8
             hover:scale-105 hover:shadow-xl
-            duration-300
+            duration-100
             ease-in-out
           "
             >
@@ -71,7 +71,7 @@ const FindLaundry = () => {
               Cek invoice ?
               <a
                 onClick={() => router.push("/bukucustomer/check-invoice")}
-                className="text-blue-600 hover:text-blue-900 duration-300 ease-in-out cursor-pointer"
+                className="text-blue-600 hover:text-blue-900 duration-100 ease-in-out cursor-pointer"
               >
                 Cek invoice
               </a>

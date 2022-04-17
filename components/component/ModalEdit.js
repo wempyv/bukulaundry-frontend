@@ -110,7 +110,7 @@ const ModalEdit = ({ showModalEdit, setShowModalEdit, customerDetail, getCustome
               </div>
               <button
                 type="submit"
-                className="w-full text-white bg-[#232020] hover:scale-105 duration-300 ease-out focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                className="w-full text-white bg-[#232020] hover:scale-105 duration-100 ease-out focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
                 Edit Customer
               </button>

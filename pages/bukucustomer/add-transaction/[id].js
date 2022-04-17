@@ -292,13 +292,13 @@ const AddTransactionFromCustomer = () => {
                                     </div>
                                     <button
                                         type="submit"
-                                        className="rounded w-full h-[2.8rem] bg-[#232020] text-white text-sm mt-2 hover:bg-[#111010] hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex items-center justify-center"
+                                        className="rounded w-full h-[2.8rem] bg-[#232020] text-white text-sm mt-2 hover:bg-[#111010] hover:shadow-xl duration-100 ease-in-out font-medium ml-auto flex items-center justify-center"
                                     >
                                         Buat Transaksi
                                     </button>
                                     <button
 
-                                        className="rounded w-full h-[2.8rem] bg-[#3ab344] text-white text-sm mt-2 hover:bg-[#1a6b06] hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex items-center justify-center mb-5"
+                                        className="rounded w-full h-[2.8rem] bg-[#3ab344] text-white text-sm mt-2 hover:bg-[#1a6b06] hover:shadow-xl duration-100 ease-in-out font-medium ml-auto flex items-center justify-center mb-5"
                                     >
                                         <a href={`https://wa.me/${user.whatsapp_number}`} target="_blank" className="flex"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
@@ -314,7 +314,7 @@ const AddTransactionFromCustomer = () => {
                         <h1 className="text-2xl font-semibold mt-2 text-[#232020]">Ooppss!</h1>
                         <p className="text-center w-80 text-gray-400 mt-2">Maaf tidak dapat menemukan Laundry dengan ID <span className="font-semibold text-[#232020]">'{id}'</span> </p>
                         <button onClick={() => router.push('/bukucustomer')}
-                            className="rounded w-4/5 md:w-3/5 mx-auto hover:scale-105  h-[2.8rem] bg-[#232020] text-white text-sm mt-10 hover:bg-[#111010] hover:shadow-xl duration-300 ease-in-out font-medium ml-auto flex items-center justify-center"
+                            className="rounded w-4/5 md:w-3/5 mx-auto hover:scale-105  h-[2.8rem] bg-[#232020] text-white text-sm mt-10 hover:bg-[#111010] hover:shadow-xl duration-100 ease-in-out font-medium ml-auto flex items-center justify-center"
                         >
                             Coba Lagi
                         </button>
