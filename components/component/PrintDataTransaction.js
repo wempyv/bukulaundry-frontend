@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import ReactToPrint from 'react-to-print';
 import { userContext } from "../../context/UserContext";
 import moment from 'moment';
@@ -8,6 +8,7 @@ moment.locale('id');
 export default function PrintToComponent({ transaction }) {
     const user = useContext(userContext);
     let componentRef = useRef();
+    const [date, setDate] = useState(Date())
 
     const transactions = transaction.filter((i) => {
         return i.status_payment.match('SUDAH DIBAYAR')
@@ -112,6 +113,10 @@ class ComponentToPrint extends React.Component {
                             </table>
                         </div>
                     </div>
+                </div>
+                <div className="flex items-end  flex-col">
+                    <p className='mt-5 text-center'>{moment(this.date).format('LL')}</p>
+                    <p className='mt-16'>Owner {this.props.user.name}</p>
                 </div>
             </div>
         );

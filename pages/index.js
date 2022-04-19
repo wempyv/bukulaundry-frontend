@@ -11,7 +11,6 @@ const index = () => {
   const user = useContext(userContext);
   const [transaction, setTransaction] = useState([])
 
-
   useEffect(() => {
     user.refreshToken()
     getTransaction(user.id)
