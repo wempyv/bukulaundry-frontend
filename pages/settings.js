@@ -47,7 +47,8 @@ const index = () => {
     setPayment(JSON.parse(response.data.payment_method))
   }
 
-  const userUpdate = async () => {
+  const userUpdate = async (e) => {
+    e.preventDefault()
     await axios.patch(`http://localhost:5000/users/${userToken.id}`, {
       email: email,
       name: name,
@@ -61,8 +62,11 @@ const index = () => {
       payment_method: payment
     });
 
-    router.push("/settings");
-    user.refreshToken()
+    const notify = () => toast(`Perubahan Disimpan!`, {
+      icon: '🔥',
+    });
+
+    notify()
   }
 
   const deletePayment = (id) => {

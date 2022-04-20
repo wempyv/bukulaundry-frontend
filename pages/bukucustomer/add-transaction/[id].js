@@ -156,7 +156,6 @@ const AddTransactionFromCustomer = () => {
                                                     value="CUCI + GOSOK"
                                                     checked={laundryType === "CUCI + GOSOK"}
                                                     onChange={(e) => setLaundryType(e.target.value)}
-                                                    required
                                                 />
                                                 <label
                                                     className="form-check-label inline-block text-gray-800"
@@ -173,7 +172,6 @@ const AddTransactionFromCustomer = () => {
                                                     value="CUCI"
                                                     checked={laundryType === "CUCI"}
                                                     onChange={(e) => setLaundryType(e.target.value)}
-                                                    required
                                                 />
                                                 <label
                                                     className="form-check-label inline-block text-gray-800"
@@ -189,7 +187,7 @@ const AddTransactionFromCustomer = () => {
                                                     type="radio"
                                                     value="GOSOK"
                                                     checked={laundryType === "GOSOK"}
-                                                    onChange={(e) => setLaundryType(e.target.value)} required
+                                                    onChange={(e) => setLaundryType(e.target.value)}
                                                 />
                                                 <label
                                                     className="form-check-label inline-block text-gray-800"
@@ -225,7 +223,7 @@ const AddTransactionFromCustomer = () => {
                                                     name="inlineRadioOptions"
                                                     id="inlineRadio1"
                                                     value="option1"
-                                                    checked={inputService === true} required
+                                                    checked={inputService === true}
                                                     onChange={() => setInputService(true)}
                                                 />
                                                 <label
@@ -245,7 +243,7 @@ const AddTransactionFromCustomer = () => {
                                                     value="option2"
                                                     checked={inputService === false}
                                                     onChange={() => setInputService(false)}
-                                                    required
+
                                                 />
                                                 <label
                                                     className="form-check-label inline-block text-gray-800"
