@@ -5,7 +5,6 @@ CardRecentTransaction;
 import WaitTransaction from "../components/component/WaitTransaction";
 import { userContext } from '../context/UserContext';
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
 
 const index = () => {
   const user = useContext(userContext);
@@ -130,10 +129,6 @@ const index = () => {
           </div>
         </section>
       </div>
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-      />
     </AdminLayout>
   );
 };
