@@ -96,6 +96,19 @@ const Login = () => {
               Login
             </button>
             <p
+              className="text-sm my-5"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
+              Lupa password ?
+              <a
+                onClick={() => router.push("/auth/forgetpassword")}
+                className="text-blue-600 hover:text-blue-900 duration-100 ease-in-out cursor-pointer"
+              >
+                Reset Password
+              </a>
+            </p>
+            <p
               className="text-sm"
               data-aos="fade-right"
               data-aos-duration="1000"
